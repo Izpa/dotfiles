@@ -4,7 +4,6 @@
     ~/.zshrc: zshrc
     ~/.zshenv: zshenv
     ~/.joker: joker.edn
-    ~/.ideavimrc: ideavimrc
     ~/.lein/profiles.clj:
       create: true
       path: profiles.clj
