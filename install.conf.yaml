@@ -1,8 +1,6 @@
 - clean: ['~']
 - link:
-    ~/.vimrc: vimrc
     ~/.zshrc: zshrc
-    ~/.zshenv: zshenv
     ~/.joker: joker.edn
     ~/.lein/profiles.clj:
       create: true
@@ -11,11 +9,6 @@
       create: true
       path: profile.boot
     ~/.spacemacs: .spacemacs
-    ~/.sbt/0.13/plugins/plugins.sbt:
-      create: true
-      path: plugins.sbt
-    ~/.sbt/0.13/global.sbt:
-      create: true
-      path: global.sbt
+
 - shell:
   - [git submodule update --init --recursive, Installing/updating submodules]
