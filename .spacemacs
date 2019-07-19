@@ -236,7 +236,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Hack"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
                                :size 13
                                :weight normal
                                :width normal)
@@ -525,6 +525,8 @@ before packages are loaded."
 
   (setq web-mode-engines-alist
         '(("smarty" . "\\.tpl\\.php\\'")))
+
+  (setq powerline-default-separator 'utf-8)
 
   (spacemacs/add-all-to-hook 'clojure-mode-hook
                              'turn-on-fci-mode
