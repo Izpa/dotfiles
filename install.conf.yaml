@@ -1,9 +1,9 @@
 - clean: ['~']
 - link:
     ~/.zshrc:
-        create: true
-        force: true
-        path: zshrc
+      create: true
+      force: true
+      path: zshrc
     ~/.joker: joker.edn
     ~/.lein/profiles.clj:
       create: true
@@ -12,11 +12,5 @@
       create: true
       path: profile.boot
     ~/.spacemacs: .spacemacs
-
 - shell:
   - [git submodule update --init --recursive, Installing/updating submodules]
-  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"]
-  - [git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions]
-  - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting]
-  - [git clone https://github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/plugins/zsh-completions]
-  - [git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k]
