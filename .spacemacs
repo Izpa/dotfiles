@@ -85,6 +85,7 @@ This function should only modify configuration layer settings."
    '(
      all-the-icons
      doom-themes
+     dracula-theme
      flycheck-joker
      material-theme
      )
@@ -217,6 +218,7 @@ It should only modify the values of Spacemacs settings."
      spacemacs-dark
      spacemacs-light
      doom-one
+     dracula
      )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -234,7 +236,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Hack"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
                                :size 13
                                :weight normal
                                :width normal)
@@ -327,11 +329,11 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
 
    ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
-   dotspacemacs-fullscreen-use-non-native nil
+   dotspacemacs-fullscreen-use-non-native t
 
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
@@ -524,6 +526,8 @@ before packages are loaded."
   (setq web-mode-engines-alist
         '(("smarty" . "\\.tpl\\.php\\'")))
 
+  (setq powerline-default-separator 'utf-8)
+
   (spacemacs/add-all-to-hook 'clojure-mode-hook
                              'turn-on-fci-mode
                              'golden-ratio-mode
@@ -624,3 +628,19 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  )
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((cider-default-cljs-repl . figwheel)
+     (helm-ag-use-agignore t)
+     (cljr-libspec-whitelist "^cljs.core.specs.alpha" "^cljs-time.extend" "^cljs-time.instant" "^googlecloud.cloudstorage.storage" "^day8.re-frame.async-flow-fx" "^day8.re-frame.http-fx" "^transportal.events" "^transportal.interval" "^transportal.intro")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
