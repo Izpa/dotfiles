@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="~/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -70,14 +70,6 @@ POWERLEVEL9K_MODE="awesome-patched"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-completions.git $ZSH_CUSTOM/plugins/zsh-completions
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-
-source $ZSH/oh-my-zsh.sh
-
 plugins=(
 autopep8
 brew
@@ -103,13 +95,14 @@ pip
 pyenv
 pylint
 python
-virtualenvwrapper
 web-search
 yarn
 zsh-autosuggestions
 zsh-syntax-highlighting
 zsh-completions
 )
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
