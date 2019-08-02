@@ -4,6 +4,10 @@
       create: true
       force: true
       path: zshrc
+    ~/.p10k.zsh:
+      create: true
+      force: true
+      path: p10k.zsh
     ~/.joker: joker.edn
     ~/.lein/profiles.clj:
       create: true
