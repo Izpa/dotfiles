@@ -72,6 +72,11 @@ This function should only modify configuration layer settings."
      sql
      themes-megapack
      yaml
+     (latex :variables
+            latex-build-command "LaTeX"
+            latex-enable-auto-fill t
+            latex-enable-folding t
+            latex-enable-magic t)
      )
 
    ;; List of additional packages that will be installed without being
@@ -502,6 +507,7 @@ before packages are loaded."
 
   (setq helm-split-window-inside-p t)
 
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   ;; Fixing "C-k" not working with company-completion tooltips
   (add-hook
    'company-completion-started-hook
@@ -582,6 +588,50 @@ before packages are loaded."
   (dolist (m '(clojure-mode clojurescript-mode))
     (spacemacs/set-leader-keys-for-major-mode m
       "gk" 'cider-find-keyword))
+
+  (custom-set-faces
+   '(linum ((t (:background "#282a36" :foreground "#565761" :slant normal))))
+   '(flyspell-incorrect ((t (:underline "#ff5555"))))
+   '(flycheck-error ((t (:underline "#ff5555"))))
+   '(flycheck-info ((t (:underline "#50fa7b"))))
+   '(flycheck-warning ((t (:underline "#ffb86c"))))
+   '(flyspell-duplicate ((t (:underline "#ffb86c")))))
+
+  (setq-default
+   clojure-indent-style :always-align
+   evil-want-Y-yank-to-eol nil
+   neo-confirm-create-directory (quote off-p)
+   neo-confirm-create-file (quote off-p)
+   neo-theme (quote nerd))
+
+  (defface re-frame-sub '((t (:foreground "#ffb86c"))) "DrakulaOrange")
+  (defface re-frame-evt '((t (:foreground "#ff5555"))) "DrakulaRed")
+  (defface re-frame-name '((t (:foreground "#4684f4"))) "GoogleBlue")
+
+  (defun word-after (word)
+    (concat word " \\(([[:graph:]]+\\)"))
+
+  (defun next-word (word)
+    (concat word " \\([[:graph:]]+\\)"))
+
+  (defun word-after-before-slash (word)
+    (concat word " \\(([[:graph:]]+\\/\\)"))
+
+  (font-lock-add-keywords
+   'clojurescript-mode `((,(next-word "defevent-fx") 1 're-frame-name t)
+                         (,(next-word "defevent-db") 1 're-frame-name t)
+                         (,(next-word "defsub") 1 're-frame-name t)
+                         (,(next-word "defsub-raw") 1 're-frame-name t)
+                         (,(word-after "<sub") 1 're-frame-name t)
+                         (,(word-after-before-slash "<sub") 1 'font-lock-type-face t)
+                         (,(word-after ">evt") 1 're-frame-name t)
+                         (,(word-after-before-slash ">evt") 1 'font-lock-type-face t)
+                         ("defsub" 0 're-frame-sub t)
+                         ("defsub-raw" 0 're-frame-sub t)
+                         ("<sub" 0 're-frame-sub t)
+                         ("defevent-fx" 0 're-frame-evt t)
+                         ("defevent-db" 0 're-frame-evt t)
+                         (">evt" 0 're-frame-evt t)))
 
   (setq-default
     clojure-indent-style :always-align
