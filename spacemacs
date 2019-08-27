@@ -543,7 +543,7 @@ before packages are loaded."
 
   (add-hook 'clojure-mode-hook
             (lambda ()
-              (setq fill-column 90)))
+              (setq fill-column 100)))
 
   (defun cider-project-reset ()
     (interactive)
