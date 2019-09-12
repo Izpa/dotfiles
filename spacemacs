@@ -686,9 +686,21 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
    (quote
-    ((cider-default-cljs-repl . figwheel)
+    ((cljr-libspec-whitelist "^day8.re-frame.async-flow-fx" "^day8.re-frame.http-fx" "^honeysql-postgres.format")
+     (cider-default-cljs-repl . figwheel)
+     (cljr-libspec-whitelist "^cljs.core.specs.alpha" "^cljs-time.extend" "^cljs-time.instant" "^googlecloud.cloudstorage.storage" "^day8.re-frame.async-flow-fx" "^day8.re-frame.http-fx" "^transportal.events" "^transportal.interval" "^transportal.intro")
+     (cider-shadow-default-options . ":app")
+     (cider-default-cljs-repl . shadow)
      (helm-ag-use-agignore t)
-     (cljr-libspec-whitelist "^cljs.core.specs.alpha" "^cljs-time.extend" "^cljs-time.instant" "^googlecloud.cloudstorage.storage" "^day8.re-frame.async-flow-fx" "^day8.re-frame.http-fx" "^transportal.events" "^transportal.interval" "^transportal.intro")))))
+     (cljr-after-warming-ast-cache-hook lambda
+                                        (&rest ignore)
+                                        (interactive)
+                                        (cider-interactive-eval "(dev/reset)"))
+     (cljr-after-warming-ast-cache-hook lambda
+                                        (&rest ignore)
+                                        (interactive)
+                                        (cider-interactive-eval "(server/start!)")
+                                        (cider-interactive-eval "(dev/reset)"))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
