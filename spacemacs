@@ -84,6 +84,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(all-the-icons
      doom-themes
+     dracula-theme
      flycheck-joker
      material-theme
      )
@@ -210,11 +211,7 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes
-   '(sanityinc-solarized-dark
-     zenburn
-     spacemacs-dark
-     spacemacs-light
-     doom-one)
+   '(dracula)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -223,7 +220,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1)
+   dotspacemacs-mode-line-theme '(spacemacs :separator utf-8 :separator-scale 1)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -231,7 +228,8 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Hack"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
+                               :size 13
                                :weight normal
                                :width normal)
 
@@ -495,6 +493,8 @@ before packages are loaded."
 
   (setq helm-split-window-inside-p t)
 
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
   ;; Fixing "C-k" not working with company-completion tooltips
   (add-hook
    'company-completion-started-hook
@@ -687,3 +687,15 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  )
 )
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flycheck-error ((t (:underline "#ff5555"))))
+ '(flycheck-info ((t (:underline "#50fa7b"))))
+ '(flycheck-warning ((t (:underline "#ffb86c"))))
+ '(flyspell-duplicate ((t (:underline "#ffb86c"))))
+ '(flyspell-incorrect ((t (:underline "#ff5555"))))
+ '(linum ((t (:background "#282a36" :foreground "#565761" :slant normal)))))
