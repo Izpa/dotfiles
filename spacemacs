@@ -81,7 +81,8 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '(dracula-theme
+   '(all-the-icons
+     dracula-theme
      flycheck-clj-kondo
      flycheck-joker
      lispyville
