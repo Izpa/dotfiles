@@ -530,28 +530,6 @@ before packages are loaded."
                          ("defevent-db" 0 're-frame-evt t)
                          (">evt" 0 're-frame-evt t)))
 
-  (require 'magit-todos nil t)
-
-  (defun magit-todos-setup-jump-key ()
-    "Add key binding to jump to todos section."
-    (define-key magit-status-mode-map "gT" 'magit-todos-jump-to-todos))
-
-  (defun magit-todos-disable-j ()
-    "Disable 'jT' binding."
-    (define-key magit-todos-section-map "j" nil))
-
-  (defun magit-todos-setup ()
-    (interactive)
-    (add-hook 'magit-todos-mode-hook 'magit-todos-setup-jump-key)
-    (add-hook 'magit-todos-mode-hook 'magit-todos-disable-j))
-
-  ;; (safe-local-variable-values
-  ;;  (quote
-  ;;   ((cljr-after-warming-ast-cache-hook
-  ;;     lambda
-  ;;     (&rest ignore)
-  ;;     (shell-command "joker ~/workspace/notifications/event_notification.joke ast-index")))))
-
   (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
 
   (setq helm-split-window-inside-p t)
@@ -674,7 +652,6 @@ This function is called at the very end of Spacemacs initialization."
      (helm-ag-use-agignore t)
      (cljr-after-warming-ast-cache-hook lambda
                                         (&rest ignore)
-                                        (shell-command "joker ~/workspace/notifications/event_notification.joke ast-cache")
                                         (interactive)
                                         (cider-interactive-eval "(cljs-server-start!)")
                                         (cider-interactive-eval "(clj-reset!)"))))))
