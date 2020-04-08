@@ -1,8 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH
+export PATH="$PATH:$HOME/.phacility/arcanist/bin/"
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -135,4 +137,15 @@ source ~/.p10k.zsh
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 	source /etc/profile.d/vte.sh
+fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/izpa/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/izpa/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/izpa/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/izpa/google-cloud-sdk/completion.zsh.inc'; fi
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi
