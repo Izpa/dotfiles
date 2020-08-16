@@ -149,3 +149,5 @@ if [ -f '/Users/izpa/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/izpa
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+autoload -Uz compinit && compinit
