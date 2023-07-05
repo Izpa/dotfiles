@@ -33,18 +33,13 @@
 
 (use-package all-the-icons
   :ensure t
-  :if (display-graphic-p)
-  
-  )
+  :if (display-graphic-p))
 
-(use-package tao-theme
+(use-package solarized-theme
   :ensure t
-  :init
-  (setq tao-theme-use-sepia nil)
-  (setq tao-theme-use-boxes nil)
   :config
-  (load-theme 'tao-yang t)
-  (set-face-attribute 'default nil :family "Iosevka" :height 120)) 
+  (load-theme 'solarized-selenized-black t)
+  (set-face-attribute 'default nil :family "Iosevka" :height 120))
 
 (provide '00-ui)
 ;;; 00-ui.el ends here
