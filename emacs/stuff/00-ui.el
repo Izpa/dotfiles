@@ -38,8 +38,8 @@
 (use-package solarized-theme
   :ensure t
   :config
-  (load-theme 'solarized-selenized-black t)
-  (set-face-attribute 'default nil :family "Iosevka" :height 120)
+  (load-theme 'solarized-dark t)
+  (set-face-attribute 'default nil :family "Source Code Pro" :height 120)
   (toggle-frame-fullscreen))
 
 (provide '00-ui)

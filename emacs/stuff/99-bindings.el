@@ -67,8 +67,8 @@
 
 (leader-def
   "t" '(:ignore t :which-key "themes")
-  "t d" '((lambda () (interactive) (load-theme 'solarized-selenized-black t)) :which-key "black theme")
-  "t l" '((lambda () (interactive) (load-theme 'solarized-selenized-white t)) :which-key "white theme"))
+  "t d" '((lambda () (interactive) (load-theme 'solarized-dark t)) :which-key "dark theme")
+  "t l" '((lambda () (interactive) (load-theme 'solarized-light t)) :which-key "light theme"))
 
 (general-define-key
  "<escape>" 'keyboard-escape-quit)
