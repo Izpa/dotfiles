@@ -39,7 +39,8 @@
   :ensure t
   :config
   (load-theme 'solarized-selenized-black t)
-  (set-face-attribute 'default nil :family "Iosevka" :height 120))
+  (set-face-attribute 'default nil :family "Iosevka" :height 120)
+  (toggle-frame-fullscreen))
 
 (provide '00-ui)
 ;;; 00-ui.el ends here
