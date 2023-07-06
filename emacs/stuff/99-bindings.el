@@ -57,7 +57,13 @@
 (leader-def
   "b" '(:ignore t :which-key "buffer")
   "b b" '(ivy-switch-buffer :which-key "switch buffer")
-  "b l" '(evil-switch-to-windows-last-buffer :which-key "last buffer"))
+  "b l" '(evil-switch-to-windows-last-buffer :which-key "last buffer")
+  "b p" '(previous-buffer :wich-key "previous buffer")
+  "b n" '(next-buffer :which-key "next buffer")
+  "b d" '(kill-buffer :which-key "kill buffer"))
+
+(leader-def
+  "v" '(magit-status :which-key "version control"))
 
 (general-define-key
  "<escape>" 'keyboard-escape-quit)
