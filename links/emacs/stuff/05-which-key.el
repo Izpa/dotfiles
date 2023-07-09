@@ -5,6 +5,9 @@
 
 (use-package which-key
   :ensure t
+  :init
+  (setq which-key-add-column-padding 2)
+  (setq which-key-separator " : " )
   :config
   (which-key-mode))
 
