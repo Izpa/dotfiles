@@ -5,7 +5,7 @@
 - link:
     ~/.emacs.d:
       create: true
-      path: emacs
+      path: links/emacs
       force: true
 - shell:
     - [git submodule update --init --recursive, Installing/updating submodules]
