@@ -7,7 +7,7 @@
   :ensure t
   :init
   (setq which-key-add-column-padding 2)
-  (setq which-key-separator " : " )
+  (setq which-key-separator ": " )
   (setq which-key-allow-evil-operators t)
   (setq which-key-show-operator-state-maps t)
   :config
