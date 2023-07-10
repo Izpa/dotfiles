@@ -4,9 +4,10 @@
 ;;; Code:
 
 (general-create-definer leader-def
-  :states 'motion
+  :states '(normal visual emacs motion)
   :keymaps 'override
-  :prefix "SPC")
+  :prefix "SPC"
+  :non-normal-prefix "C-SPC")
 
 (leader-def
   "f" '(:ignore t :which-key "file")
