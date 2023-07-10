@@ -1,3 +1,8 @@
+;;; package --- Summary
+;;; Commentary:
+
+;;; Code:
+
 (general-create-definer leader-def
   :states 'motion
   :keymaps 'override
