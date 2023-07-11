@@ -72,7 +72,8 @@
   "b s" '(save-buffer :which-key "save buffer"))
 
 (leader-def
-  "v" '(magit-status :which-key "version control"))
+  "g" '(:ignore t :which-key "magit")
+  "g s" '(magit-status :which-key "magit-status"))
 
 (leader-def
   "t" '(:ignore t :which-key "themes")
@@ -90,7 +91,8 @@
   "p a" '(projectile-toggle-between-implementation-and-test :which-key "impl <-> test")
   "p p" '(projectile-switch-project :which-key "switch project")
   "p s" '(persp-switch :which-key "switch persp")
-  "p t" '(treemacs :which-key "treemacs"))
+  "p t" '(treemacs :which-key "treemacs")
+  "p l" '(persp-state-load :which-key "persp load"))
 
 (leader-def
   "q" '(:ignore t :which-key "quit")

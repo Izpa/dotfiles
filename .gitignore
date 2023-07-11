@@ -1,22 +1,6 @@
 *.DS_Store
 
-# Compiled
-*.elc
-
-# Packaging
-.cask
-
-# Backup files
-*~
-
-# Undo-tree save-files
-*.~undo-tree
-
-# emacs temp
-\#*#
-
-*flycheck_*
-
 links/emacs
 !links/emacs/stuff
 !links/emacs/init.el
+!links/emacs/stuff/14-treemacs.el
