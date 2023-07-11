@@ -4,6 +4,11 @@
 ;;; Code:
 
 (use-package perspective
+  :ensure t
   :init
-  (persp-mode))
+  (setq persp-suppress-no-prefix-key-warning t)
+  (persp-mode)
+  ;;:config
+  ;;(persp-mode)
+  :hook (kill-emacs-hook persp-state-save))
 ;;; 13-perspective.el ends here

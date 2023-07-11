@@ -92,6 +92,12 @@
   "p s" '(persp-switch :which-key "switch persp"))
 
 (leader-def
+  "q" '(:ignore t :which-key "quit")
+  "q k" '(:ignore t :which-key "kill")
+  "q k k" '(save-buffers-kill-emacs :which-key "save buffers")
+  "q k b" '(kill-emacs :which-key "kill with buffers"))
+
+(leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
 
 (setq which-key-idle-delay 0.5)
