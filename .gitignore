@@ -17,6 +17,6 @@
 
 *flycheck_*
 
-links/emacs/elpa
-links/emacs/projectile-bookmarks.eld
-links/emacs/transient
+links/emacs
+!links/emacs/stuff
+!links/emacs/init.el

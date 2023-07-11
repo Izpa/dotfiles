@@ -62,11 +62,14 @@
 
 (leader-def
   "b" '(:ignore t :which-key "buffer")
-  "b b" '(ivy-switch-buffer :which-key "switch buffer")
+  "b b" '(persp-ivy-switch-buffer :which-key "switch buffer")
+  "b a" '(ivy-switch-buffer :which-key "all buffers")
   "b l" '(evil-switch-to-windows-last-buffer :which-key "last buffer")
   "b p" '(previous-buffer :wich-key "previous buffer")
   "b n" '(next-buffer :which-key "next buffer")
-  "b d" '(kill-buffer :which-key "kill buffer"))
+  "b d" '(kill-buffer :which-key "kill buffer")
+  "b c" '(evil-buffer-new :which-key "create buffer")
+  "b s" '(save-buffer :which-key "save buffer"))
 
 (leader-def
   "v" '(magit-status :which-key "version control"))
@@ -84,7 +87,8 @@
   "p" '(:ignore t :which-key "project")
   "p f" '(projectile-find-file :which-key "find file in project")
   "p a" '(projectile-toggle-between-implementation-and-test :which-key "impl <-> test")
-  "p p" '(projectile-switch-project :which-key "switch project"))
+  "p p" '(projectile-switch-project :which-key "switch project")
+  "p s" '(persp-switch :which-key "switch persp"))
 
 (leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
