@@ -79,7 +79,8 @@
   "t" '(:ignore t :which-key "themes")
   "t d" '((lambda () (interactive) (load-theme 'solarized-dark t)) :which-key "dark theme")
   "t l" '((lambda () (interactive) (load-theme 'solarized-light t)) :which-key "light theme")
-  "t n" '(global-display-line-numbers-mode :which-key "line numbers"))
+  "t n" '(global-display-line-numbers-mode :which-key "line numbers")
+  "t f" '(text-scale-adjust :which-key "font size"))
 
 (general-define-key
  "<escape>" 'keyboard-escape-quit)
