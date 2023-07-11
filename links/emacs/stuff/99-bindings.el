@@ -89,7 +89,8 @@
   "p f" '(projectile-find-file :which-key "find file in project")
   "p a" '(projectile-toggle-between-implementation-and-test :which-key "impl <-> test")
   "p p" '(projectile-switch-project :which-key "switch project")
-  "p s" '(persp-switch :which-key "switch persp"))
+  "p s" '(persp-switch :which-key "switch persp")
+  "p t" '(treemacs :which-key "treemacs"))
 
 (leader-def
   "q" '(:ignore t :which-key "quit")
