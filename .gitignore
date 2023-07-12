@@ -1,6 +1,6 @@
 *.DS_Store
 
-links/emacs
-!links/emacs/stuff
+!links/emacs/
+links/emacs/*
+!links/emacs/stuff/
 !links/emacs/init.el
-!links/emacs/stuff/14-treemacs.el
