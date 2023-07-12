@@ -1,4 +1,5 @@
 *.DS_Store
+*_flycheck*
 
 !links/emacs/
 links/emacs/*

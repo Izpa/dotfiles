@@ -50,7 +50,23 @@
   "m" '(:ignore t :which-key "emacs lisp")
   "m e" '(:ignore t :which-key "eval")
   "m e e" 'eval-last-sexp
-  "m e b" 'eval-buffer)
+  "m e b" 'eval-buffer
+  "m g" '(:ignore t :which-key "goto")
+  "m g d" '(lsp-find-definition :which-key "defn")
+  "m g r" '(lsp-find-references :which-key "ref")
+  "m t" '(:ignore t :which-key "try")
+  "m t t" 'lsp-clojure-create-test
+  "m t f" 'lsp-clojure-create-function
+  "m t e" 'lsp-clojure-expand-let
+  "m t c" 'lsp-clojure-clean-ns
+  "m t r" 'lsp-clojure-add-import-to-namespace
+  "m t s" 'lsp-clojure-sort-map
+  "m t p" 'lsp-clojure-cycle-privacy
+  "m t x" 'lsp-clojure-extract-function
+  "m t l" 'lsp-clojure-move-to-let
+  "m t d" 'lsp-clojure-move-coll-entry-down
+  "m t u" 'lsp-clojure-move-coll-entry-up
+  "m t f" 'lsp-clojure-move-form)
 
 (leader-def
   :keymaps 'clojure-mode-map
