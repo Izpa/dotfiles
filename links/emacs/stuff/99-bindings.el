@@ -38,7 +38,8 @@
   "w h" '(evil-window-left :which-key "focus ←")
   "w j" '(evil-window-down :which-key "focus ↓")
   "w l" '(evil-window-right :which-key "focus →")
-  "w d" '(delete-window :which-key "delete window"))
+  "w d" '(delete-window :which-key "delete window")
+  "w g" '(select-window-by-number :which-key "focus by number"))
 
 (general-define-key
  :keymaps 'ivy-mode-map
