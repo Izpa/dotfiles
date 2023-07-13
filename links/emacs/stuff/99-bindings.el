@@ -118,6 +118,9 @@
   "q k b" '(kill-emacs :which-key "kill with buffers"))
 
 (leader-def
+  "s" '(projectile-run-vterm :which-key "terminal"))
+
+(leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
 
 (setq which-key-idle-delay 0.5)
