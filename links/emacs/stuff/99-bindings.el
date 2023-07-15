@@ -127,6 +127,13 @@
   "d b" '(sql-show-sqli-buffer :which-key "buffer"))
 
 (leader-def
+  "r" '(:ignore t :which-key "rest client")
+  "r r" '(restclient-http-send-current :which-key "send")
+  "r n" '(restclient-jump-next :which-key "next query")
+  "r p" '(restclient-jump-prev :which-key "previous query")
+  "r " '(restclient-copy-curl-command :which-key "copy as curl"))
+
+(leader-def
   "s" '(projectile-run-vterm :which-key "terminal"))
 
 (leader-def
