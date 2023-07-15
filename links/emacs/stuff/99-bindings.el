@@ -119,6 +119,13 @@
   "q k b" '(kill-emacs :which-key "kill with buffers"))
 
 (leader-def
+  "d" '(:ignore t :which-key "db")
+  "d c" '(sql-connect :which-key "connect")
+  "d l" '(sql-list-all :which-key "list tables")
+  "d t" '(sql-list-table :which-key "table")
+  "d b" '(sql-show-sqli-buffer :which-key "buffer"))
+
+(leader-def
   "s" '(projectile-run-vterm :which-key "terminal"))
 
 (leader-def
