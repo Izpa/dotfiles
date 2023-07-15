@@ -113,10 +113,11 @@
   "p l" '(persp-state-load :which-key "persp load"))
 
 (leader-def
-  "q" '(:ignore t :which-key "quit")
-  "q k" '(:ignore t :which-key "kill")
-  "q k k" '(save-buffers-kill-emacs :which-key "save buffers")
-  "q k b" '(kill-emacs :which-key "kill with buffers"))
+  "e" '(:ignore t :which-key "emacs")
+  "e l" '(view-lossage :which-key "commands log")
+  "e k" '(:ignore t :which-key "kill")
+  "e k k" '(save-buffers-kill-emacs :which-key "save buffers")
+  "e k b" '(kill-emacs :which-key "kill with buffers"))
 
 (leader-def
   "d" '(:ignore t :which-key "db")
