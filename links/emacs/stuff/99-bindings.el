@@ -134,6 +134,13 @@
   "r " '(restclient-copy-curl-command :which-key "copy as curl"))
 
 (leader-def
+  "h" '(:ignore t :which-key "hideshow")
+  "h h" '(hs-hide-block :which-key "hide block")
+  "h s" '(hs-show-block :which-key "show block")
+  "h c" '(hs-hide-all :which-key "hide all")
+  "h a" '(hs-show-all :which-key "show all"))
+
+(leader-def
   "s" '(projectile-run-vterm :which-key "terminal"))
 
 (leader-def
