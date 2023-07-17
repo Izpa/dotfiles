@@ -7,7 +7,7 @@
   :states '(normal visual emacs motion)
   :keymaps 'override
   :prefix "SPC"
-  :non-normal-prefix "C-SPC")
+  :non-normal-prefix "M-SPC")
 
 (leader-def
   "f" '(:ignore t :which-key "file")
@@ -56,10 +56,13 @@
 (leader-def
   :keymaps 'clojure-mode-map
   "m" '(:ignore t :which-key "clojure")
+  "m c" 'cider-connect-clj
   "m e" '(:ignore t :which-key "eval")
   "m e e" 'cider-eval-last-sexp
-  "m c" 'cider-connect-clj
   "m e b" 'cider-eval-buffer
+  "m e d" '(cider-eval-defun-at-point :which-key "deinstrument")
+  "m e i" '(cider-debug-defun-at-point :which-key "instrument")
+  "m e l" '(cider-browse-instrumented-defs :which-key "instrument-list")
   "m g" '(:ignore t :which-key "goto")
   "m g d" '(lsp-find-definition :which-key "defn")
   "m g r" '(lsp-find-references :which-key "ref")
@@ -110,6 +113,7 @@
   "p p" '(projectile-switch-project :which-key "switch project")
   "p s" '(persp-switch :which-key "switch persp")
   "p t" '(treemacs :which-key "treemacs")
+  "p c" '(persp-state-save :which-key "persp save")
   "p l" '(persp-state-load :which-key "persp load"))
 
 (leader-def
@@ -131,7 +135,7 @@
   "r r" '(restclient-http-send-current :which-key "send")
   "r n" '(restclient-jump-next :which-key "next query")
   "r p" '(restclient-jump-prev :which-key "previous query")
-  "r " '(restclient-copy-curl-command :which-key "copy as curl"))
+  "r c" '(restclient-copy-curl-command :which-key "copy as curl"))
 
 (leader-def
   "h" '(:ignore t :which-key "hideshow")
