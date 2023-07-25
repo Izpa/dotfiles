@@ -114,7 +114,8 @@
   "p s" '(persp-switch :which-key "switch persp")
   "p t" '(treemacs :which-key "treemacs")
   "p c" '(persp-state-save :which-key "persp save")
-  "p l" '(persp-state-load :which-key "persp load"))
+  "p l" '(persp-state-load :which-key "persp load")
+  "p k" '(persp-kill :which-key "persp kill"))
 
 (leader-def
   "e" '(:ignore t :which-key "emacs")
