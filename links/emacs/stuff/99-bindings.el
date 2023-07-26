@@ -96,11 +96,11 @@
   "g s" '(magit-status :which-key "magit-status"))
 
 (leader-def
-  "t" '(:ignore t :which-key "themes")
-  "t d" '((lambda () (interactive) (load-theme 'solarized-dark t)) :which-key "dark theme")
-  "t l" '((lambda () (interactive) (load-theme 'solarized-light t)) :which-key "light theme")
-  "t n" '(global-display-line-numbers-mode :which-key "line numbers")
-  "t f" '(text-scale-adjust :which-key "font size"))
+  "v" '(:ignore t :which-key "view")
+  "v d" '((lambda () (interactive) (load-theme 'solarized-dark t)) :which-key "dark theme")
+  "v l" '((lambda () (interactive) (load-theme 'solarized-light t)) :which-key "light theme")
+  "v n" '(global-display-line-numbers-mode :which-key "line numbers")
+  "v f" '(text-scale-adjust :which-key "font size"))
 
 (general-define-key
  "<escape>" 'keyboard-escape-quit)
@@ -146,8 +146,13 @@
   "h a" '(hs-show-all :which-key "show all"))
 
 (leader-def
-  "s" '(projectile-run-vterm :which-key "terminal"))
-
+  "t" '(:ignore t :which-key "terminal")
+  "t t" '(multi-vterm :which-key "new")
+  "t n" '(multi-vterm-next :which-key "next")
+  "t p" '(multi-vterm-prev :which-key "prev")
+  "t r" '(multi-vterm-buffer-name :which-key "rename")
+  "t l" '(multi-vterm-buffer-list :which-key "list"))
+ 
 (leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
 
