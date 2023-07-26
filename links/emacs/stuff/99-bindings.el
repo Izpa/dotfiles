@@ -150,7 +150,7 @@
   "t t" '(multi-vterm :which-key "new")
   "t n" '(multi-vterm-next :which-key "next")
   "t p" '(multi-vterm-prev :which-key "prev")
-  "t r" '(multi-vterm-buffer-name :which-key "rename")
+  "t r" '(multi-vterm-rename-buffer :which-key "rename")
   "t l" '(multi-vterm-buffer-list :which-key "list"))
  
 (leader-def
