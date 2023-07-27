@@ -115,7 +115,8 @@
   "p t" '(treemacs :which-key "treemacs")
   "p c" '(persp-state-save :which-key "persp save")
   "p l" '(persp-state-load :which-key "persp load")
-  "p k" '(persp-kill :which-key "persp kill"))
+  "p k" '(persp-kill :which-key "persp kill")
+  "p r" '(persp-rename :which-key "persp rename"))
 
 (leader-def
   "e" '(:ignore t :which-key "emacs")
@@ -150,8 +151,7 @@
   "t t" '(multi-vterm :which-key "new")
   "t n" '(multi-vterm-next :which-key "next")
   "t p" '(multi-vterm-prev :which-key "prev")
-  "t r" '(multi-vterm-rename-buffer :which-key "rename")
-  "t l" '(multi-vterm-buffer-list :which-key "list"))
+  "t r" '(multi-vterm-rename-buffer :which-key "rename"))
  
 (leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
