@@ -73,18 +73,18 @@
   "m g r" '(lsp-find-references :which-key "ref")
   "m f" '(:ignore t :which-key "format")
   "m f b" '(cider-format-buffer :which-key "buffer")
-  "m t" '(:ignore t :which-key "try")
-  "m t c" 'lsp-clojure-clean-ns
-  "m t d" 'lsp-clojure-move-coll-entry-down
-  "m t e" 'lsp-clojure-expand-let
-  "m t f" 'lsp-clojure-create-function
-  "m t m" 'lsp-clojure-move-form
-  "m t l" 'lsp-clojure-move-to-let
-  "m t u" 'lsp-clojure-move-coll-entry-up
-  "m t p" 'lsp-clojure-cycle-privacy
-  "m t r" 'lsp-clojure-add-import-to-namespace
-  "m t s" 'lsp-clojure-sort-map
-  "m t x" 'lsp-clojure-extract-function)
+  "m w" '(:ignore t :which-key "WIP")
+  "m w c" 'lsp-clojure-clean-ns
+  "m w d" 'lsp-clojure-move-coll-entry-down
+  "m w e" 'lsp-clojure-expand-let
+  "m w f" 'lsp-clojure-create-function
+  "m w m" 'lsp-clojure-move-form
+  "m w l" 'lsp-clojure-move-to-let
+  "m w u" 'lsp-clojure-move-coll-entry-up
+  "m w p" 'lsp-clojure-cycle-privacy
+  "m w r" 'lsp-clojure-add-import-to-namespace
+  "m w s" 'lsp-clojure-sort-map
+  "m w x" 'lsp-clojure-extract-function)
 
 (leader-def
   "b" '(:ignore t :which-key "buffer")
