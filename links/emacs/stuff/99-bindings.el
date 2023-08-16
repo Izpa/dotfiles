@@ -63,14 +63,20 @@
   "m e d" '(cider-eval-defun-at-point :which-key "deinstrument")
   "m e i" '(cider-debug-defun-at-point :which-key "instrument")
   "m e l" '(cider-browse-instrumented-defs :which-key "instrument-list")
+  "m t" '(:ignore t :which-key "test")
+  "m t p" '(cider-test-run-project-tests :which-key "project")
+  "m t t" '(cider-test-run-test :which-key "focus")
+  "m t n" '(cider-test-run-ns-tests :which-key "namespace")
+  "m t c" '(lsp-clojure-create-test :which-key "create")
   "m g" '(:ignore t :which-key "goto")
   "m g d" '(lsp-find-definition :which-key "defn")
   "m g r" '(lsp-find-references :which-key "ref")
+  "m f" '(:ignore t :which-key "format")
+  "m f b" '(cider-format-buffer :which-key "buffer")
   "m t" '(:ignore t :which-key "try")
   "m t c" 'lsp-clojure-clean-ns
   "m t d" 'lsp-clojure-move-coll-entry-down
   "m t e" 'lsp-clojure-expand-let
-  "m t t" 'lsp-clojure-create-test
   "m t f" 'lsp-clojure-create-function
   "m t m" 'lsp-clojure-move-form
   "m t l" 'lsp-clojure-move-to-let
@@ -87,13 +93,18 @@
   "b l" '(evil-switch-to-windows-last-buffer :which-key "last buffer")
   "b p" '(previous-buffer :wich-key "previous buffer")
   "b n" '(next-buffer :which-key "next buffer")
-  "b d" '(kill-buffer :which-key "kill buffer")
+  "b d" '(persp-remove-buffer :which-key "kill buffer")
   "b c" '(evil-buffer-new :which-key "create buffer")
   "b s" '(save-buffer :which-key "save buffer"))
 
 (leader-def
   "g" '(:ignore t :which-key "magit")
   "g s" '(magit-status :which-key "magit-status"))
+
+(leader-def
+  :keymaps 'magit-mode-map
+  "g b" '(:ignore t :which-key "branch")
+  "g b c" '(magit-branch-checkout :which-key "checkout"))
 
 (leader-def
   "v" '(:ignore t :which-key "view")
