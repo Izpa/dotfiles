@@ -28,7 +28,9 @@
   "k >" '(sp-forward-barf-sexp :which-key "(->")
   "k d" '(sp-kill-sexp :which-key "delete sexp")
   "k r" '(sp-raise-sexp :which-key "raise sexp")
-  "k y" '(sp-copy-sexp :which-key "copy sexp"))
+  "k y" '(sp-copy-sexp :which-key "copy sexp")
+  "k c" '(comment-or-uncomment-region :which-key "comment")
+  "k f" '(lsp-format-buffer :which-key "format buffer"))
 
 (leader-def
   "w" '(:ignore t :which-key "window")
@@ -54,15 +56,25 @@
   "m e b" 'eval-buffer)
 
 (leader-def
+  :keymaps 'elpy-mode-map
+  "m" '(:ignore t :which-key "python")
+  "m v" '(:ignore t :which-key "virtual env")
+  "m v c" '(pyvenv-create :which-key "create")
+  "m v a" '(pyvenv-workon :which-key "work on")
+  "m v d" '(pyvenv-deactivate :which-key "deactivate"))
+
+(leader-def
   :keymaps 'clojure-mode-map
   "m" '(:ignore t :which-key "clojure")
   "m c" 'cider-connect-clj
   "m e" '(:ignore t :which-key "eval")
   "m e e" 'cider-eval-last-sexp
   "m e b" 'cider-eval-buffer
-  "m e d" '(cider-eval-defun-at-point :which-key "deinstrument")
-  "m e i" '(cider-debug-defun-at-point :which-key "instrument")
-  "m e l" '(cider-browse-instrumented-defs :which-key "instrument-list")
+  "m e i" '(cider-inspect-last-result)
+  "m d" '(:ignore t :which-key "debug")
+  "m d i" '(cider-debug-defun-at-point :which-key "instrument")
+  "m d d" '(cider-eval-defun-at-point :which-key "deinstrument")
+  "m d l" '(cider-browse-instrumented-defs :which-key "instrument-list")
   "m t" '(:ignore t :which-key "test")
   "m t p" '(cider-test-run-project-tests :which-key "project")
   "m t t" '(cider-test-run-test :which-key "focus")
