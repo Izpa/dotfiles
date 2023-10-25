@@ -1,5 +1,6 @@
 ;;; package --- Summary
 ;;; Commentary:
+;;; minibuffer completion
 
 ;;; Code:
 

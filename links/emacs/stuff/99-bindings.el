@@ -66,11 +66,13 @@
 (leader-def
   :keymaps 'clojure-mode-map
   "m" '(:ignore t :which-key "clojure")
-  "m c" 'cider-connect-clj
+  "m r" '(:ignore t :which-key "repl")
+  "m r c" '(cider-connect-clj :which-key "connect")
+  "m r j" '(cider-jack-in :which-key "jack-in")
   "m e" '(:ignore t :which-key "eval")
   "m e e" 'cider-eval-last-sexp
   "m e b" 'cider-eval-buffer
-  "m e i" '(cider-inspect-last-result)
+  "m e i" '(cider-inspect-last-result :which-key "inspect")
   "m d" '(:ignore t :which-key "debug")
   "m d i" '(cider-debug-defun-at-point :which-key "instrument")
   "m d d" '(cider-eval-defun-at-point :which-key "deinstrument")

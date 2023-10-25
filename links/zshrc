@@ -156,5 +156,5 @@ source $ZSH/oh-my-zsh.sh
 
 setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
-export PATH="/Users/izpa/.gravie/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/opt/mysql@5.7/bin:$/Users/izpa/.gravie/bin:$PATH"
 eval "$(direnv hook zsh)"
