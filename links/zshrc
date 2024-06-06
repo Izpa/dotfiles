@@ -155,6 +155,11 @@ source $ZSH/oh-my-zsh.sh
 # }
 
 setopt PROMPT_SUBST
-PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 export PATH="/usr/local/sbin:/usr/local/opt/mysql@5.7/bin:$/Users/izpa/.gravie/bin:$PATH"
 eval "$(direnv hook zsh)"
+
+# Find SSH agent socket file
+ssh_sock_file=$(compgen -G "/tmp/ssh-*/agent.*" | head -n 1)
+if [[ -z $SSH_AUTH_SOCK && -S $ssh_sock_file ]]; then
+    export SSH_AUTH_SOCK=$ssh_sock_file
+fi

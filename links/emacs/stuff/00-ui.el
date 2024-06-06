@@ -12,7 +12,7 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
-(global-linum-mode t)
+(global-display-line-numbers-mode t)
 
 ;;; Setup
 

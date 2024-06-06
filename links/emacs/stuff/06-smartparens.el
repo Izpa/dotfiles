@@ -3,8 +3,8 @@
 
 ;;; Code:
 
-(use-package smartparens
-  :ensure t
+(use-package smartparens-mode
+  :ensure smartparens
   :config
   (require 'smartparens-config)
   :hook ((clojure-mode emacs-lisp-mode) . smartparens-mode))
