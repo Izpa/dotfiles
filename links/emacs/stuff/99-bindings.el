@@ -21,7 +21,7 @@
   "k" '(:ignore t :which-key "sexp")
   "k w" '(sp-wrap-round :which-key "wrap ()")
   "k [" '(sp-wrap-square :which-key "wrap []")
-  "k {" '(sp-wrap-square :which-key "wrap {}")
+  "k {" '(sp-wrap-curly :which-key "wrap {}")
   "k ," '(sp-forward-barf-sexp :which-key "<-)")
   "k ." '(sp-forward-slurp-sexp :which-key ")->")
   "k <" '(sp-backward-barf-sexp :which-key "<-(")
@@ -61,7 +61,15 @@
   "m v" '(:ignore t :which-key "virtual env")
   "m v c" '(pyvenv-create :which-key "create")
   "m v a" '(pyvenv-workon :which-key "work on")
-  "m v d" '(pyvenv-deactivate :which-key "deactivate"))
+  "m v d" '(pyvenv-deactivate :which-key "deactivate")
+  "m d" '(:ignore t :which-key "debug")
+  "m d d" '(realgud:pdb :which-key "run debugger")
+  "m t" '(elpy-test :which-key "test")
+  "m r" '(:ignore t :which-key "refactoring")
+  "m r r" '(elpy-refactor-rename :which-key "rename")
+  "m r f" '(elpy-format-code :which-key "format")
+  "m r v" '(elpy-refactor-extract-variable :which-key "extract variable")
+  "m r f" '(elpy-refactor-extract-function :which-key "extract function"))
 
 (leader-def
   :keymaps 'clojure-mode-map
@@ -176,7 +184,8 @@
   "t t" '(multi-vterm :which-key "new")
   "t n" '(multi-vterm-next :which-key "next")
   "t p" '(multi-vterm-prev :which-key "prev")
-  "t r" '(multi-vterm-rename-buffer :which-key "rename"))
+  "t c" '(multi-vterm-rename-buffer :which-key "change name")
+  "t r" '(vterm-send-return :which-key "send return"))
  
 (leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))

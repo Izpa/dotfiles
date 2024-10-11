@@ -7,9 +7,8 @@
 (require 'package)
 ;; Add largest package repository (Melpa)
 (add-to-list 'package-archives
-	     ;; '("melpa-stable" . "https://stable.melpa.org/packages")
-             '("melpa" . "https://melpa.org/packages/")
-	     t)
+	     '("melpa-stable" . "https://stable.melpa.org/packages")
+             '("melpa" . "https://melpa.org/packages/"))
 ;; Initialize Emacs package manager
 (package-initialize)
 
@@ -36,7 +35,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(winum golden-ratio vterm lsp-treemacs treemacs-perspective treemacs-magit treemacs-icons-dired treemacs-projectile treemacs-evil treemacs perspective all-the-icons lsp-mode company flycheck counsel cider solarized-theme ivy evil-collection use-package)))
+   '(realgud pyenv-mode clojure-mode-extra-font-locking winum golden-ratio vterm lsp-treemacs treemacs-perspective treemacs-magit treemacs-icons-dired treemacs-projectile treemacs-evil treemacs perspective all-the-icons lsp-mode company flycheck counsel cider solarized-theme ivy evil-collection use-package)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
