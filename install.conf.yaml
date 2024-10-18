@@ -3,9 +3,13 @@
       relink: true
 - clean: ['~']
 - link:
-    ~/.emacs.d:
+    ~/.emacs.d/init.el:
       create: true
-      path: links/emacs
+      path: links/emacs/init.el
+      force: true
+    ~/.emacs.d/stuff:
+      create: true
+      path: links/emacs/stuff
       force: true
     ~/.zshrc:
       create: true
