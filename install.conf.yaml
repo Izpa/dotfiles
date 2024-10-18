@@ -15,5 +15,10 @@
       create: true
       path: links/zshrc
       force: true
+    ~/.oh-my-zsh:
+     create: true
+     path: links/oh-my-zsh
+     force: true
+
 - shell:
     - [git submodule update --init --recursive, Installing/updating submodules]
