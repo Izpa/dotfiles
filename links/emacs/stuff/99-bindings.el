@@ -149,7 +149,8 @@
   "p c" '(persp-state-save :which-key "persp save")
   "p l" '(persp-state-load :which-key "persp load")
   "p k" '(persp-kill :which-key "persp kill")
-  "p r" '(persp-rename :which-key "persp rename"))
+  "p r" '(persp-rename :which-key "persp rename")
+  "p d" '('treemacs-select-directory :which-key "treemacs select directory")')
 
 (leader-def
   "e" '(:ignore t :which-key "emacs")
