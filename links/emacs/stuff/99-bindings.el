@@ -17,6 +17,21 @@
 (leader-def
   "/" 'counsel-rg)
 
+(defun sp-wrap-round ()
+  "Wrap the following expression in round parentheses."
+  (interactive)
+  (sp-wrap-with-pair "("))
+
+(defun sp-wrap-square ()
+  "Wrap the following expression in square parentheses."
+  (interactive)
+  (sp-wrap-with-pair "["))
+
+(defun sp-wrap-curly ()
+  "Wrap the following expression in curly parentheses."
+  (interactive)
+  (sp-wrap-with-pair "{"))
+
 (leader-def
   "k" '(:ignore t :which-key "sexp")
   "k w" '(sp-wrap-round :which-key "wrap ()")
