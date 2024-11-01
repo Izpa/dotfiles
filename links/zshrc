@@ -165,3 +165,5 @@ if [[ -z $SSH_AUTH_SOCK && -S $ssh_sock_file ]]; then
 fi
 
 GOPATH=$HOME/go PATH=$PATH:/usr/local/go/gin:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOPATH/bin
