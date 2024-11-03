@@ -19,6 +19,10 @@
      create: true
      path: links/oh-my-zsh
      force: true
+    ~/.p10k.zsh
+     create: true
+     path: links/p10k.zhs
+     force: true
 
 - shell:
     - [git submodule update --init --recursive, Installing/updating submodules]
