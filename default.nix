@@ -18,6 +18,8 @@ pkgs.mkShell {
     pkgs.libvterm
     pkgs.direnv
     pkgs.glib
+    pkgs.pkg-config
+    pkgs.gcc
   ];
 
 }

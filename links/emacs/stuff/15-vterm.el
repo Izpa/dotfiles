@@ -3,7 +3,7 @@
 
 ;;; Code:
 
-(setq vterm-always-compile-module t)
+;; fs(setq vterm-always-compile-module t)
 
 (use-package vterm
   :ensure t
