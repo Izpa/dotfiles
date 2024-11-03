@@ -12,6 +12,8 @@ WORKDIR /home
 
 RUN nix-shell /home/default.nix --run "emacs --batch -l /root/.emacs.d/init.el -f package-refresh-contents -f package-install-selected-packages"
 
-EXPOSE 2222
+RUN echo "exec zsh" >> /home/.bashrc
 
-CMD nix-shell /home/default.nix --run "TERM=xterm-direct emacs -nw"
+ENTRYPOINT [ "nix-shell", "/home/default.nix", "--run" ]
+
+CMD ["zsh"]
