@@ -5,8 +5,10 @@ COPY default.nix /home/default.nix
 ENV NIXPKGS_ALLOW_UNFREE=1
 RUN nix-shell /home/default.nix
 
-RUN nix-shell /home/default.nix --run "export GIT_TIMESTAMP=$(date +%s) && git clone https://github.com/Izpa/dotfiles.git /home/.dotfiles \
-    && cd /home/.dotfiles && ./install"
+ARG GIT_COMMIT_HASH
+ENV GIT_COMMIT_HASH=${GIT_COMMIT_HASH}
+RUN nix-shell /home/default.nix --run "git clone https://github.com/Izpa/dotfiles.git /home/.dotfiles \
+    && cd /home/.dotfiles && git checkout ${GIT_COMMIT_HASH} && ./install"
 
 WORKDIR /home
 
