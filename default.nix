@@ -13,16 +13,9 @@ pkgs.mkShell {
     pkgs.leiningen
     pkgs.openssh
     pkgs.ngrok
-    pkgs.zsh   # Устанавливаем zsh
+    pkgs.zsh
+    pkgs.cmake
+    pkgs.libvterm
   ];
 
-  shellHook = ''
-    # Установка oh-my-zsh
-    if [ ! -d "$HOME/.oh-my-zsh" ]; then
-      echo "Установка oh-my-zsh..."
-      sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    else
-      echo "oh-my-zsh уже установлен."
-    fi
-  '';
 }
