@@ -3,6 +3,8 @@
 
 ;;; Code:
 
+(setq vterm-always-compile-module t)
+
 (use-package vterm
   :ensure t
   :config
@@ -47,14 +49,4 @@
 	(evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
 	(evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
 	(evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume))
-
-(unless (featurep 'vterm)
-  (progn
-    (unless (package-installed-p 'vterm)
-      (package-refresh-contents)
-      (package-install 'vterm))
-   (setq vterm-always-compile-module t)
-    (require 'vterm)
-    (ignore-errors
-      (vterm-module-compile))))
 ;;; 15-vterm.el ends here
