@@ -16,6 +16,8 @@ pkgs.mkShell {
     pkgs.zsh
     pkgs.cmake
     pkgs.libvterm
+    pkgs.direnv
+    pkgs.glib
   ];
 
 }
