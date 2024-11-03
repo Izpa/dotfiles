@@ -13,7 +13,6 @@ RUN nix-shell /home/default.nix --run "git clone https://github.com/Izpa/dotfile
 WORKDIR /home
 
 RUN nix-shell /home/default.nix --run "emacs --batch -l /root/.emacs.d/init.el -f package-refresh-contents -f package-install-selected-packages"
-RUN nix-shell /home/default.nix --run "emacs --batch -l /root/.emacs.d/init.el --eval '(progn (require \\''vterm) (vterm-module-compile))'"
 
 RUN echo "exec zsh" >> /home/.bashrc
 

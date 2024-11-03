@@ -47,4 +47,17 @@
 	(evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
 	(evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
 	(evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume))
+
+;; Установка и компиляция vterm, если он еще не установлен или не скомпилирован
+(unless (featurep 'vterm)
+  (progn
+    ;; Устанавливаем vterm, если он не установлен
+    (unless (package-installed-p 'vterm)
+      (package-refresh-contents)
+      (package-install 'vterm))
+    ;; Компилируем модуль vterm, если он еще не был скомпилирован
+    (require 'vterm)
+    (when (not (fboundp 'vterm-module-compile))
+      (setq vterm-always-compile-module t))
+    (vterm-module-compile)))
 ;;; 15-vterm.el ends here
