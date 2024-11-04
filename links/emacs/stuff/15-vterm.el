@@ -14,6 +14,8 @@
   (vterm-environment '("TYPEWRITTEN_CURSOR=terminal"))
   (vterm-ignore-blink-cursor t))
 
+(setq vterm-always-compile-module t)
+
 (use-package multi-vterm
         :ensure t
 	:config

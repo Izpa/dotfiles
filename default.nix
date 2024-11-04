@@ -15,11 +15,12 @@ pkgs.mkShell {
     pkgs.ngrok
     pkgs.zsh
     pkgs.cmake
-    pkgs.libvterm
+    pkgs.libvterm-neovim
     pkgs.direnv
     pkgs.glib
     pkgs.pkg-config
     pkgs.gcc
   ];
-
 }
+
+
