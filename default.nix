@@ -2,7 +2,7 @@
 
 pkgs.mkShell {
   buildInputs = [
-    pkgs.emacs
+    pkgs.emacs29
     pkgs.curl
     pkgs.wget
     pkgs.nano

@@ -19,12 +19,14 @@
 (use-package multi-vterm
         :ensure t
 	:config
+	(unless (require 'multi-vterm nil 'noerror)
+		(package-reinstall 'multi-vterm))
 	(add-hook 'vterm-mode-hook
 			(lambda ()
 			(setq-local evil-insert-state-cursor 'box)
 			(evil-insert-state)))
 	(define-key vterm-mode-map [return]                      #'vterm-send-return)
-
+	
 	(setq vterm-keymap-exceptions nil)
 	(evil-define-key 'insert vterm-mode-map (kbd "C-e")      #'vterm--self-insert)
 	(evil-define-key 'insert vterm-mode-map (kbd "C-f")      #'vterm--self-insert)
