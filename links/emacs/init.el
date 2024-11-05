@@ -12,6 +12,8 @@
 ;; Initialize Emacs package manager
 (package-initialize)
 
+(setq byte-compile-warnings '(not docstrings))
+
 (add-to-list 'image-types 'svg)
 
 ;; Pull package list on first Emacs start
