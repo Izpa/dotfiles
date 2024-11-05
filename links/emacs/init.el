@@ -12,7 +12,10 @@
 ;; Initialize Emacs package manager
 (package-initialize)
 
-(setq byte-compile-warnings '(not docstrings multiple-docstrings suspicious free-vars unresolved redefine obsolete))
+;; (setq byte-compile-warnings '(not docstrings multiple-docstrings suspicious free-vars unresolved redefine obsolete))
+(setq byte-compile-warnings 'nil)
+(setq warning-suppress-types '((comp)))
+
 
 (add-to-list 'image-types 'svg)
 
