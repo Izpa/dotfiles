@@ -51,4 +51,12 @@
 	(evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
 	(evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
 	(evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume))
+
+(defun reinstall-package (pkg)
+  "Reinstall the specified package."
+  (when (package-installed-p pkg)
+    (package-delete (cadr (assq pkg package-alist)) t))
+  (package-install pkg))
+
+(reinstall-package 'multi-vterm)
 ;;; 15-vterm.el ends here

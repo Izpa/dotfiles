@@ -14,13 +14,13 @@ WORKDIR /home
 
 RUN nix-shell /home/default.nix --run "emacs --batch -l /root/.emacs.d/init.el -f package-refresh-contents -f package-install-selected-packages"
 
-RUN nix-shell /home/default.nix --run "emacs --batch -l /root/.emacs.d/init.el \
-    --eval \"(progn \
-             (require 'package) \
-             (package-refresh-contents) \
-	     (when (package-installed-p 'multi-vterm) \
-               (package-delete (cadr (assq 'multi-vterm package-alist)) t)) \
-             (package-install 'multi-vterm))\""
+#RUN nix-shell /home/default.nix --run "emacs --batch -l /root/.emacs.d/init.el \
+#    --eval \"(progn \
+#             (require 'package) \
+#             (package-refresh-contents) \
+#	     (when (package-installed-p 'multi-vterm) \
+#               (package-delete (cadr (assq 'multi-vterm package-alist)) t)) \
+#             (package-install 'multi-vterm))\""
 
 RUN echo "exec zsh" >> /home/.bashrc
 
