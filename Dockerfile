@@ -16,6 +16,14 @@ RUN nix-shell /home/default.nix --run "emacs --batch -l /root/.emacs.d/init.el -
 
 RUN echo "exec zsh" >> /home/.bashrc
 
-ENTRYPOINT ["nix-shell", "/home/default.nix", "--run", "export TERM=xterm-direct && exec ${1:-emacs -nw}"]
+COPY entrypoint.sh /home/entrypoint.sh
 
-CMD []
+RUN chmod +x /home/entrypoint.sh
+
+EXPOSE 22
+
+ENTRYPOINT ["nix-shell", "/home/default.nix", "--run", "\"/home/entrypoint.sh\""]
+
+#ENTRYPOINT [ "nix-shell", "/home/default.nix", "--run" ]
+
+#CMD ["zsh"]
