@@ -6,7 +6,7 @@ build:
 
 .PHONY: run
 run:
-	docker run -it --rm dev zsh 
+	docker run -it --rm dev 
 
 .PHONY: rm
 rm:
