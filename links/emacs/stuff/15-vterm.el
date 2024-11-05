@@ -19,8 +19,6 @@
 (use-package multi-vterm
         :ensure t
 	:config
-	(unless (require 'multi-vterm nil 'noerror)
-		(package-reinstall 'multi-vterm))
 	(add-hook 'vterm-mode-hook
 			(lambda ()
 			(setq-local evil-insert-state-cursor 'box)
