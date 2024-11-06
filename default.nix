@@ -12,6 +12,7 @@ pkgs.mkShell {
     pkgs.clojure
     pkgs.leiningen
     pkgs.openssh
+    pkgs.openssl
     pkgs.ngrok
     pkgs.zsh
     pkgs.cmake
@@ -20,6 +21,7 @@ pkgs.mkShell {
     pkgs.glib
     pkgs.pkg-config
     pkgs.gcc
+    pkgs.tmux
   ];
 }
 
