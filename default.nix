@@ -19,6 +19,10 @@ pkgs.mkShell {
     pkgs.pkg-config
     pkgs.gcc
     pkgs.tmux
+    pkgs.docker
+    pkgs.docker-compose
+    pkgs.postgresql.lib
+    pkgs.xclip
   ];
 }
 

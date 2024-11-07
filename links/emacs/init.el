@@ -34,6 +34,24 @@
 
 (provide 'init)
 
+
+;; setup remote buffer
+(setq select-enable-clipboard t)
+
+(defun copy-to-xclipboard (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "xclip" "*Messages*" "xclip" "-selection" "clipboard")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(defun paste-from-xclipboard ()
+  (shell-command-to-string "xclip -o -selection clipboard"))
+
+(setq interprogram-cut-function 'copy-to-xclipboard)
+(setq interprogram-paste-function 'paste-from-xclipboard)
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
