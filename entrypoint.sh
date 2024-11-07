@@ -16,6 +16,14 @@ if [ -n "$ROOT_SSH_KEY" ]; then
     chmod 700 /root/.ssh
 fi
 
+# Configure Git user.name and user.email if provided
+if [ -n "$GIT_USER_NAME" ]; then
+    git config --global user.name "$GIT_USER_NAME"
+fi
+if [ -n "$GIT_USER_EMAIL" ]; then
+    git config --global user.email "$GIT_USER_EMAIL"
+fi
+
 # Start the SSH server
 service ssh start
 

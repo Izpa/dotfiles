@@ -6,7 +6,14 @@ build:
 
 .PHONY: run
 run:
-	docker run --rm -d -p 2222:22 -e ROOT_SSH_KEY="$(shell cat ~/.ssh/id_rsa.pub)" -v ~/projects:/root/projects -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro --name dev dev
+	docker run --rm -d -p 2222:22 \
+		-e ROOT_SSH_KEY="$(shell cat ~/.ssh/id_rsa.pub)" \
+		-e GIT_USER_NAME="$(shell git config --global user.name)" \
+		-e GIT_USER_EMAIL="$(shell git config --global user.email)" \
+		-v ~/projects:/root/projects \
+		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+		--name dev \
+			dev
 
 .PHONY: conn
 conn:
