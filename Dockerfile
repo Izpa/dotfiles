@@ -60,6 +60,8 @@ RUN mkdir -p /var/run/sshd && \
 
 # Expose port for SSH
 EXPOSE 22
+# Expose port for show web app
+EXPOSE 8080
 
 # Copy entrypoint script
 COPY entrypoint.sh /root/entrypoint.sh
