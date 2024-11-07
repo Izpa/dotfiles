@@ -6,8 +6,13 @@ build:
 
 .PHONY: run
 run:
-	docker run -it --rm dev 
+	docker run --rm -d -p 2222:22 -e ROOT_SSH_KEY="$(cat ~/.ssh/id_rsa.pub)" -v ~/projects:/root/projects --name dev dev
+
+.PHONY: conn
+conn:
+	ssh -p 2222 root@localhost
 
 .PHONY: rm
 rm:
-	docker rm dev
+	docker rm -f  dev
+

@@ -65,6 +65,9 @@ EXPOSE 22
 COPY entrypoint.sh /root/entrypoint.sh
 RUN chmod +x /root/entrypoint.sh
 
-# Set the entrypoint to start SSH
+# Copy .bashrc for auto-launching nix-shell and tmux
+COPY .bashrc /root/.bashrc
+
+# Set the entrypoint to start SSH and nix-shell
 ENTRYPOINT ["nix-shell", "/root/default.nix", "--command", "/root/entrypoint.sh"]
 
