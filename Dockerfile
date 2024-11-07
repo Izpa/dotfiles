@@ -21,7 +21,7 @@ RUN mkdir -p /nix && chmod 777 /nix && \
 ENV NIX_BUILD_GROUP_ID=996
 ENV NIX_FIRST_BUILD_UID=1000
 
-# Install the Nix package manager with multi-user mode, setting the group and UID variables
+# Install the Nix package manager with multi-user mode
 RUN curl -L https://nixos.org/nix/install | sh -s -- --daemon
 
 # Set up Nix environment for all following commands
@@ -47,8 +47,8 @@ RUN nix-shell /root/default.nix --run "\
     git clone https://github.com/Izpa/dotfiles.git /root/.dotfiles && \
     cd /root/.dotfiles && git checkout ${GIT_COMMIT_HASH} && ./install"
 
-# Set zsh as the default shell for root
-RUN chsh -s $(which zsh) root
+# Set bash as the default shell for root
+RUN chsh -s /bin/bash root
 
 # Install Emacs packages
 RUN nix-shell /root/default.nix --run "emacs --batch -l /root/.emacs.d/init.el -f package-refresh-contents -f package-install-selected-packages"
@@ -65,6 +65,6 @@ EXPOSE 22
 COPY entrypoint.sh /root/entrypoint.sh
 RUN chmod +x /root/entrypoint.sh
 
-# Set the entrypoint to start SSH only
+# Set the entrypoint to start SSH
 ENTRYPOINT ["nix-shell", "/root/default.nix", "--command", "/root/entrypoint.sh"]
 

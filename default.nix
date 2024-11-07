@@ -11,9 +11,6 @@ pkgs.mkShell {
     pkgs.python3
     pkgs.clojure
     pkgs.leiningen
-    pkgs.openssh
-    pkgs.openssl
-    pkgs.ngrok
     pkgs.zsh
     pkgs.cmake
     pkgs.libvterm-neovim
@@ -24,5 +21,4 @@ pkgs.mkShell {
     pkgs.tmux
   ];
 }
-
 
