@@ -10,9 +10,6 @@ RUN apt-get update && apt-get install -y \
     xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
-RUN echo "X11Forwarding yes" >> /etc/ssh/sshd_config && \
-    echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
-
 # Create necessary directories and permissions for multi-user Nix installation
 RUN mkdir -p /nix && chmod 777 /nix && \
     groupadd -r -g 996 nixbld && \

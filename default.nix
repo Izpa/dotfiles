@@ -21,8 +21,7 @@ pkgs.mkShell {
     pkgs.tmux
     pkgs.docker
     pkgs.docker-compose
-    pkgs.postgresql.lib
-    pkgs.xclip
+    pkgs.postgresql.liby
   ];
 }
 

@@ -24,6 +24,9 @@ if [ -n "$GIT_USER_EMAIL" ]; then
     git config --global user.email "$GIT_USER_EMAIL"
 fi
 
+touch /root/.Xauthority
+chown root:root /root/.Xauthority
+
 # Start the SSH server
 service ssh start
 

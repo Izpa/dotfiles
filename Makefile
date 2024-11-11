@@ -21,7 +21,7 @@ run:
 
 .PHONY: conn
 conn:
-	ssh -X -p 2222 root@localhost
+	ssh -p 2222 root@localhost
 
 .PHONY: rm
 rm:

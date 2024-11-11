@@ -34,31 +34,13 @@
 
 (provide 'init)
 
-
-;; setup remote buffer
-(setq select-enable-clipboard t)
-
-(defun copy-to-xclipboard (text &optional push)
-  (let ((process-connection-type nil))
-    (let ((proc (start-process "xclip" "*Messages*" "xclip" "-selection" "clipboard")))
-      (process-send-string proc text)
-      (process-send-eof proc))))
-
-(defun paste-from-xclipboard ()
-  (shell-command-to-string "xclip -o -selection clipboard"))
-
-(setq interprogram-cut-function 'copy-to-xclipboard)
-(setq interprogram-paste-function 'paste-from-xclipboard)
-
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(vterm go-mode treemacs-magit treemacs-projectile projectile cider magit with-editor winum which-key treemacs-perspective treemacs-icons-dired treemacs-evil solarized-theme smartparens restclient realgud lsp-mode golden-ratio general flycheck evil-escape evil-collection elpy counsel all-the-icons)))
+   '(multi-vterm vterm go-mode treemacs-magit treemacs-projectile projectile cider magit with-editor winum which-key treemacs-perspective treemacs-icons-dired treemacs-evil solarized-theme smartparens restclient realgud lsp-mode golden-ratio general flycheck evil-escape evil-collection elpy counsel all-the-icons)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
