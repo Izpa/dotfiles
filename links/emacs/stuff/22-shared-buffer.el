@@ -15,3 +15,17 @@
         ;; Send to current TTY
         (send-string-to-terminal (format "\033]52;c;%s\a" base64_text))))))
 
+(defun yank-to-clipboard-after-evil-yank ()
+  "Call yank-to-clipboard after Evil yank commands."
+  (when (and (boundp 'evil-mode) evil-mode)
+    (yank-to-clipboard)))
+
+(defun yank-to-clipboard-after-evil-delete ()
+  "Call yank-to-clipboard after Evil delete commands."
+  (when (and (boundp 'evil-mode) evil-mode)
+    (yank-to-clipboard)))
+
+(advice-add 'evil-yank :after #'yank-to-clipboard-after-evil-yank)
+(advice-add 'evil-delete :after #'yank-to-clipboard-after-evil-delete)
+(advice-add 'evil-delete-line :after #'yank-to-clipboard-after-evil-delete)
+
