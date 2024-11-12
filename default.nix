@@ -21,7 +21,7 @@ pkgs.mkShell {
     pkgs.tmux
     pkgs.docker
     pkgs.docker-compose
-    pkgs.postgresql.liby
+    pkgs.postgresql.lib
   ];
 }
 
