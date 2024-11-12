@@ -23,7 +23,7 @@
       create: true
       path: links/p10k.zsh
       force: true
-    ~/.tmux.comf
+    ~/.tmux.comfi:
       create: true
       path: links/tmux.conf
       force: true
