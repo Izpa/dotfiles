@@ -15,12 +15,12 @@
         ;; Send to current TTY
         (send-string-to-terminal (format "\033]52;c;%s\a" base64_text))))))
 
-(defun yank-to-clipboard-after-evil-yank ()
+(defun yank-to-clipboard-after-evil-yank (&rest _args)
   "Call yank-to-clipboard after Evil yank commands."
   (when (and (boundp 'evil-mode) evil-mode)
     (yank-to-clipboard)))
 
-(defun yank-to-clipboard-after-evil-delete ()
+(defun yank-to-clipboard-after-evil-delete (&rest _args)
   "Call yank-to-clipboard after Evil delete commands."
   (when (and (boundp 'evil-mode) evil-mode)
     (yank-to-clipboard)))
