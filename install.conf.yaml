@@ -23,6 +23,9 @@
       create: true
       path: links/p10k.zsh
       force: true
-
+    ~/.tmux.comf
+      create: true
+      path: links/tmux.conf
+      force: true
 - shell:
     - [git submodule update --init --recursive, Installing/updating submodules]
