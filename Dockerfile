@@ -14,4 +14,6 @@ RUN nix-shell /home/default.nix --run "emacs --batch -l /root/.emacs.d/init.el -
 
 EXPOSE 2222
 
-CMD nix-shell /home/default.nix --run "TERM=xterm-direct emacs -nw"
+#CMD nix-shell /home/default.nix --run "TERM=xterm-direct emacs -nw"
+
+ENTRYPOINT ["nix-shell", "/home/default.nix", "--run", "sshd -D"]
