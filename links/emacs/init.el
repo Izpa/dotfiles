@@ -40,7 +40,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(multi-vterm vterm go-mode treemacs-magit treemacs-projectile projectile cider magit with-editor winum which-key treemacs-perspective treemacs-icons-dired treemacs-evil solarized-theme smartparens restclient realgud lsp-mode golden-ratio general flycheck evil-escape evil-collection elpy counsel all-the-icons)))
+   '(vue-mode vterm go-mode treemacs-magit treemacs-projectile projectile cider magit with-editor winum which-key treemacs-perspective treemacs-icons-dired treemacs-evil solarized-theme smartparens restclient realgud lsp-mode golden-ratio general flycheck evil-escape evil-collection elpy counsel all-the-icons)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

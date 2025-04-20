@@ -22,6 +22,8 @@ pkgs.mkShell {
     pkgs.docker
     pkgs.docker-compose
     pkgs.postgresql.lib
+    pkgs.postgresql
+    pkgs.iputils
   ];
 }
 
