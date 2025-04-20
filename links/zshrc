@@ -166,4 +166,5 @@ fi
 
 GOPATH=$HOME/go PATH=$PATH:/usr/local/go/gin:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/binexport PATH="/usr/local/opt/arm-none-eabi-gcc@8/bin:$PATH"
+export PATH="/usr/local/opt/arm-none-eabi-gcc@8/bin:$PATH"

@@ -1,44 +1,32 @@
-# Указываем имя образа и пользователя на Docker Hub
-IMAGE_NAME = dev
-TAG = latest
+GIT_COMMIT_HASH := $(shell git ls-remote https://github.com/Izpa/dotfiles.git HEAD | awk '{ print $$1 }')
 
-# Цель по умолчанию - сборка и пуш образа с latest тегом
-.PHONY: all
-all: build push
-
-# Сборка Docker-образа
 .PHONY: build
 build:
-	docker build -t $(DOCKER_USERNAME)/$(IMAGE_NAME):$(TAG) .
+	docker build --build-arg GIT_COMMIT_HASH=$(GIT_COMMIT_HASH) -t dev .
 
-# Сборка образа с конкретной версией
-.PHONY: build-version
-build-version:
-	docker build -t $(DOCKER_USERNAME)/$(IMAGE_NAME):$(VERSION_TAG) .
-
-# Пуш Docker-образа в Docker Hub с latest тегом
-.PHONY: push
-push:
-	docker push $(DOCKER_USERNAME)/$(IMAGE_NAME):$(TAG)
-
-# Пуш Docker-образа с версией
-.PHONY: push-version
-push-version:
-	docker push $(DOCKER_USERNAME)/$(IMAGE_NAME):$(VERSION_TAG)
-
-# Логин в Docker Hub (запросит логин и пароль)
-.PHONY: login
-login:
-	docker login
-
-# Очистка локальных образов (опционально, чтобы освободить место)
-.PHONY: clean
-clean:
-	docker rmi $(DOCKER_USERNAME)/$(IMAGE_NAME):$(TAG)
-	docker rmi $(DOCKER_USERNAME)/$(IMAGE_NAME):$(VERSION_TAG)
-
-# Запуск контейнера с монтированием SSH-ключей и проектов
-# Передача путей через аргументы командной строки
 .PHONY: run
 run:
-	docker run --rm -v $(SSH):/root/.ssh -v $(PROJECTS):/projects $(DOCKER_USERNAME)/$(IMAGE_NAME):$(TAG)
+	docker run --rm -d \
+		-p 2222:22 \
+		-p 8080:8080 \
+		-e ROOT_SSH_KEY="$(shell cat ~/.ssh/id_rsa.pub)" \
+		-e GIT_USER_NAME="$(shell git config --global user.name)" \
+		-e GIT_USER_EMAIL="$(shell git config --global user.email)" \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		-v ~/projects:/root/projects \
+		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
+		--network dev-net \
+		--name dev \
+			dev
+
+.PHONY: conn
+conn:
+	ssh -p 2222 root@localhost
+
+.PHONY: rm
+rm:
+	docker rm -f  dev
+
+.PHONY: net-up
+net-up:
+	docker network create dev-net

@@ -3,6 +3,8 @@
 
 ;;; Code:
 
+;; fs(setq vterm-always-compile-module t)
+
 (use-package vterm
   :ensure t
   :config
@@ -12,6 +14,8 @@
   (vterm-environment '("TYPEWRITTEN_CURSOR=terminal"))
   (vterm-ignore-blink-cursor t))
 
+(setq vterm-always-compile-module t)
+
 (use-package multi-vterm
         :ensure t
 	:config
@@ -20,7 +24,7 @@
 			(setq-local evil-insert-state-cursor 'box)
 			(evil-insert-state)))
 	(define-key vterm-mode-map [return]                      #'vterm-send-return)
-
+	
 	(setq vterm-keymap-exceptions nil)
 	(evil-define-key 'insert vterm-mode-map (kbd "C-e")      #'vterm--self-insert)
 	(evil-define-key 'insert vterm-mode-map (kbd "C-f")      #'vterm--self-insert)
@@ -47,4 +51,13 @@
 	(evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
 	(evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
 	(evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume))
+
+(defun reinstall-package (pkg)
+  "Reinstall the specified package."
+  (when (package-installed-p pkg)
+    (package-delete (cadr (assq pkg package-alist)) t))
+  (package-install pkg))
+
+(reinstall-package 'multi-vterm)
+
 ;;; 15-vterm.el ends here

@@ -12,6 +12,11 @@
 ;; Initialize Emacs package manager
 (package-initialize)
 
+;; (setq byte-compile-warnings '(not docstrings multiple-docstrings suspicious free-vars unresolved redefine obsolete))
+(setq byte-compile-warnings 'nil)
+(setq warning-suppress-types '((comp)))
+
+
 (add-to-list 'image-types 'svg)
 
 ;; Pull package list on first Emacs start
@@ -34,7 +39,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   '(vue-mode vterm go-mode treemacs-magit treemacs-projectile projectile cider magit with-editor winum which-key treemacs-perspective treemacs-icons-dired treemacs-evil solarized-theme smartparens restclient realgud lsp-mode golden-ratio general flycheck evil-escape evil-collection elpy counsel all-the-icons)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
