@@ -73,3 +73,6 @@ COPY .bashrc /root/.bashrc
 # Set the entrypoint to start SSH and nix-shell
 ENTRYPOINT ["nix-shell", "/root/default.nix", "--command", "/root/entrypoint.sh"]
 
+#CMD nix-shell /home/default.nix --run "TERM=xterm-direct emacs -nw"
+
+#ENTRYPOINT ["nix-shell", "/home/default.nix", "--run", "sshd -D"]
