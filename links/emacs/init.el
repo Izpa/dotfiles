@@ -40,7 +40,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(vue-mode vterm go-mode treemacs-magit treemacs-projectile projectile cider magit with-editor winum which-key treemacs-perspective treemacs-icons-dired treemacs-evil solarized-theme smartparens restclient realgud lsp-mode golden-ratio general flycheck evil-escape evil-collection elpy counsel all-the-icons)))
+   '(lsp-treemacs go-eldoc lsp-ui direnv reformatter python-mode vue-mode vterm go-mode treemacs-magit treemacs-projectile projectile cider magit with-editor winum which-key treemacs-perspective treemacs-icons-dired treemacs-evil solarized-theme smartparens restclient realgud lsp-mode golden-ratio general flycheck evil-escape evil-collection elpy counsel all-the-icons))
+ '(safe-local-variable-values
+   '((sql-connection-alist
+      (dev-db
+       (sql-product 'postgres)
+       (sql-database
+	(concat "postgresql://" "flexiana" ":" "dev" "@localhost" ":5433" "/frankie"))))
+     (sql-postgres-login-params)
+     (eval progn
+	   (make-variable-buffer-local 'cider-jack-in-nrepl-middlewares)
+	   (add-to-list 'cider-jack-in-nrepl-middlewares "shadow.cljs.devtools.server.nrepl/middleware")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
