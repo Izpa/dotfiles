@@ -4,9 +4,12 @@
 ;;; Code:
 
 ;;; Invaluable UI stuff
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
+(when (and (display-graphic-p) (fboundp 'scroll-bar-mode))
+  (scroll-bar-mode -1))
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (fboundp 'menu-bar-mode)
+  (menu-bar-mode -1))
 (setq inhibit-startup-screen t)
 (setq scroll-step 1)
 (setq make-backup-files nil)

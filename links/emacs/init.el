@@ -8,6 +8,7 @@
 ;; Add largest package repository (Melpa)
 (setq package-archives '(("melpa-stable" . "https://stable.melpa.org/packages")
                          ("melpa" . "https://melpa.org/packages/")
+			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
 ;; Initialize Emacs package manager
 (package-initialize)
@@ -15,9 +16,6 @@
 ;; (setq byte-compile-warnings '(not docstrings multiple-docstrings suspicious free-vars unresolved redefine obsolete))
 (setq byte-compile-warnings 'nil)
 (setq warning-suppress-types '((comp)))
-
-
-(add-to-list 'image-types 'svg)
 
 ;; Pull package list on first Emacs start
 (unless package-archive-contents
@@ -40,17 +38,24 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-treemacs go-eldoc lsp-ui direnv reformatter python-mode vue-mode vterm go-mode treemacs-magit treemacs-projectile projectile cider magit with-editor winum which-key treemacs-perspective treemacs-icons-dired treemacs-evil solarized-theme smartparens restclient realgud lsp-mode golden-ratio general flycheck evil-escape evil-collection elpy counsel all-the-icons))
+   '(aidermacs all-the-icons cider company counsel direnv envrc
+	       evil-collection evil-escape flycheck general go-eldoc
+	       golden-ratio lsp-treemacs lsp-ui multi-vterm pyvenv
+	       reformatter restclient smartparens solarized-theme
+	       treemacs-evil treemacs-icons-dired treemacs-magit
+	       treemacs-perspective treemacs-projectile vue-mode winum))
  '(safe-local-variable-values
    '((sql-connection-alist
-      (dev-db
-       (sql-product 'postgres)
-       (sql-database
-	(concat "postgresql://" "flexiana" ":" "dev" "@localhost" ":5433" "/frankie"))))
+      (dev-db (sql-product 'postgres)
+	      (sql-database
+	       (concat "postgresql://" "flexiana" ":" "dev"
+		       "@localhost" ":5433" "/frankie"))))
      (sql-postgres-login-params)
      (eval progn
-	   (make-variable-buffer-local 'cider-jack-in-nrepl-middlewares)
-	   (add-to-list 'cider-jack-in-nrepl-middlewares "shadow.cljs.devtools.server.nrepl/middleware")))))
+	   (make-variable-buffer-local
+	    'cider-jack-in-nrepl-middlewares)
+	   (add-to-list 'cider-jack-in-nrepl-middlewares
+			"shadow.cljs.devtools.server.nrepl/middleware")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -33,6 +33,9 @@
   (sp-wrap-with-pair "{"))
 
 (leader-def
+  "a" '(aider-transient-menu  :which-key "ai"))
+
+(leader-def
   "k" '(:ignore t :which-key "sexp")
   "k w" '(sp-wrap-round :which-key "wrap ()")
   "k [" '(sp-wrap-square :which-key "wrap []")
