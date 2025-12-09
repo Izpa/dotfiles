@@ -14,4 +14,8 @@
   (aidermacs-extra-args '("--thinking-tokens" "30k"))
   (aidermacs-default-model "openai/gpt-5-mini"))
 
+(use-package claude-code
+  :ensure t
+  :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest))
+
 ;;; 26-ai.el ends here

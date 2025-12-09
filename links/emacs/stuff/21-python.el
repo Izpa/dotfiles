@@ -19,9 +19,4 @@
   :config
   (pyvenv-mode 1))
 
-(use-package direnv
-  :ensure t
-  :config
-  (direnv-mode))
-
 ;;; 21-python.el ends here

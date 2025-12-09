@@ -1,4 +1,4 @@
-;;; package --- Summary
+;; package --- Summary
 ;;; Commentary:
 
 ;;; Code:
@@ -40,16 +40,16 @@
  '(package-selected-packages nil)
  '(safe-local-variable-values
    '((sql-connection-alist
-      (dev-db (sql-product 'postgres)
-	      (sql-database
-	       (concat "postgresql://" "flexiana" ":" "dev"
-		       "@localhost" ":5433" "/frankie"))))
-     (sql-postgres-login-params)
-     (eval progn
-	   (make-variable-buffer-local
-	    'cider-jack-in-nrepl-middlewares)
-	   (add-to-list 'cider-jack-in-nrepl-middlewares
-			"shadow.cljs.devtools.server.nrepl/middleware")))))
+	  (dev-db (sql-product 'postgres)
+			  (sql-database
+			   (concat "postgresql://" "flexiana" ":" "dev"
+					   "@localhost" ":5433" "/frankie"))))
+	 (sql-postgres-login-params)
+	 (eval progn
+		   (make-variable-buffer-local
+			'cider-jack-in-nrepl-middlewares)
+		   (add-to-list 'cider-jack-in-nrepl-middlewares
+						"shadow.cljs.devtools.server.nrepl/middleware")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

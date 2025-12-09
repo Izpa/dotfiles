@@ -21,5 +21,15 @@
   :ensure t
   :config (evil-escape-mode))
 
+(use-package avy
+  :ensure t
+  :commands (avy-goto-char avy-goto-char-2 avy-goto-line avy-goto-word-1))
+
+(use-package evil-mc
+  :ensure t
+  :after evil
+  :config
+  (global-evil-mc-mode 1))
+
 (provide '01-evil)
 ;;; 01-evil.el ends here

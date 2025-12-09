@@ -10,9 +10,12 @@
   (setq persp-state-default-file "~/.emacs-perspective-state-autosaved")
   (persp-mode)
   (add-hook 'kill-emacs-hook #'persp-state-save)
-  ;;(add-hook 'emacs-startup-hook #'persp-state-restore)
-  :hook
-  ;;(kill-emacs-hook . persp-state-save)
-  (emacs-startup-hook . persp-state-load)
-  )
+  :config
+  (when (file-exists-p persp-state-default-file)
+    (persp-state-load persp-state-default-file))
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (switch-to-buffer "*scratch*")
+              (evil-normal-state))))
+
 ;;; 13-perspective.el ends here

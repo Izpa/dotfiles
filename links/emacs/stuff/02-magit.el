@@ -8,5 +8,12 @@
   :bind
   (("C-c g" . magit-status)))
 
+(use-package yaml
+  :ensure t)
+
+(use-package forge
+  :ensure t
+  :after magit)
+
 (provide '02-magit)
 ;;; 02-magit.el ends here

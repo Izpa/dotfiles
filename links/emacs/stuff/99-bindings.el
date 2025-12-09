@@ -33,22 +33,43 @@
   (sp-wrap-with-pair "{"))
 
 (leader-def
-  "a" '(aidermacs-transient-menu  :which-key "ai"))
+  "a" '(aidermacs-transient-menu  :which-key "aider"))
+
+(leader-def
+  "c" '(:ignore t :which-key "claude")
+  "c c" '(claude-code :which-key "start")
+  "c C" '(claude-code-continue :which-key "continue")
+  "c k" '(claude-code-kill :which-key "kill")
+  "c i" '(claude-code-new-instance :which-key "new instance")
+  "c s" '(claude-code-send-command :which-key "send command")
+  "c r" '(claude-code-send-region :which-key "send region")
+  "c o" '(claude-code-send-buffer-file :which-key "send file")
+  "c e" '(claude-code-fix-error-at-point :which-key "fix error")
+  "c b" '(claude-code-switch-to-buffer :which-key "buffer")
+  "c t" '(claude-code-toggle :which-key "toggle")
+  "c z" '(claude-code-toggle-read-only-mode :which-key "read-only")
+  "c y" '(claude-code-send-return :which-key "yes")
+  "c n" '(claude-code-send-escape :which-key "no")
+  "c 1" '(claude-code-send-1 :which-key "option 1")
+  "c 2" '(claude-code-send-2 :which-key "option 2")
+  "c 3" '(claude-code-send-3 :which-key "option 3"))
 
 (leader-def
   "k" '(:ignore t :which-key "sexp")
   "k w" '(sp-wrap-round :which-key "wrap ()")
   "k [" '(sp-wrap-square :which-key "wrap []")
   "k {" '(sp-wrap-curly :which-key "wrap {}")
-  "k ," '(sp-forward-barf-sexp :which-key "<-)")
-  "k ." '(sp-forward-slurp-sexp :which-key ")->")
-  "k <" '(sp-backward-barf-sexp :which-key "<-(")
-  "k >" '(sp-forward-barf-sexp :which-key "(->")
-  "k d" '(sp-kill-sexp :which-key "delete sexp")
-  "k r" '(sp-raise-sexp :which-key "raise sexp")
-  "k y" '(sp-copy-sexp :which-key "copy sexp")
-  "k c" '(comment-or-uncomment-region :which-key "comment")
-  "k f" '(lsp-format-buffer :which-key "format buffer"))
+  "k ," '(sp-forward-barf-sexp :which-key "barf ->")
+  "k ." '(sp-forward-slurp-sexp :which-key "slurp ->")
+  "k <" '(sp-backward-barf-sexp :which-key "<- barf")
+  "k >" '(sp-backward-slurp-sexp :which-key "<- slurp")
+  "k d" '(sp-kill-sexp :which-key "delete")
+  "k r" '(sp-raise-sexp :which-key "raise")
+  "k y" '(sp-copy-sexp :which-key "copy"))
+
+(leader-def
+  ";" '(comment-or-uncomment-region :which-key "comment")
+  "=" '(lsp-format-buffer :which-key "format buffer"))
 
 (leader-def
   "w" '(:ignore t :which-key "window")
@@ -74,20 +95,19 @@
   "m e b" 'eval-buffer)
 
 (leader-def
-  :keymaps 'elpy-mode-map
+  :keymaps 'python-mode-map
   "m" '(:ignore t :which-key "python")
   "m v" '(:ignore t :which-key "virtual env")
   "m v c" '(pyvenv-create :which-key "create")
   "m v a" '(pyvenv-workon :which-key "work on")
   "m v d" '(pyvenv-deactivate :which-key "deactivate")
-  "m d" '(:ignore t :which-key "debug")
-  "m d d" '(realgud:pdb :which-key "run debugger")
-  "m t" '(elpy-test :which-key "test")
+  "m g" '(:ignore t :which-key "goto")
+  "m g d" '(xref-find-definitions :which-key "definition")
+  "m g r" '(xref-find-references :which-key "references")
   "m r" '(:ignore t :which-key "refactoring")
-  "m r r" '(elpy-refactor-rename :which-key "rename")
-  "m r f" '(elpy-format-code :which-key "format")
-  "m r v" '(elpy-refactor-extract-variable :which-key "extract variable")
-  "m r f" '(elpy-refactor-extract-function :which-key "extract function"))
+  "m r r" '(eglot-rename :which-key "rename")
+  "m f" '(:ignore t :which-key "format")
+  "m f b" '(eglot-format-buffer :which-key "buffer"))
 
 (leader-def
   :keymaps 'clojure-mode-map
@@ -131,7 +151,7 @@
   "b b" '(persp-ivy-switch-buffer :which-key "switch buffer")
   "b a" '(ivy-switch-buffer :which-key "all buffers")
   "b l" '(evil-switch-to-windows-last-buffer :which-key "last buffer")
-  "b p" '(previous-buffer :wich-key "previous buffer")
+  "b p" '(previous-buffer :which-key "previous buffer")
   "b n" '(next-buffer :which-key "next buffer")
   "b d" '(persp-remove-buffer :which-key "kill buffer")
   "b c" '(evil-buffer-new :which-key "create buffer")
@@ -208,6 +228,17 @@
  
 (leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
+
+(leader-def
+  "j" '(:ignore t :which-key "jump")
+  "j j" '(avy-goto-char :which-key "char")
+  "j w" '(avy-goto-word-1 :which-key "word")
+  "j l" '(avy-goto-line :which-key "line"))
+
+(leader-def
+  "D" '(:ignore t :which-key "devops")
+  "D d" '(docker :which-key "docker")
+  "D k" '(kubernetes-overview :which-key "kubernetes"))
 
 (setq which-key-idle-delay 0.5)
 (setq which-key-idle-secondary-delay 0)
