@@ -1,58 +1,163 @@
-Dotfiles Template
-=================
+# Dotfiles
 
-This is a template repository for bootstrapping your dotfiles with [Dotbot][dotbot].
+Portable development environment with Nix, Home Manager, and Flakes.
 
-To get started, you can [create a new repository from this template][template]
-(or you can [fork][fork] this repository, if you prefer). You can probably
-delete this README and rename your version to something like just `dotfiles`.
+## What's included
 
-In general, you should be using symbolic links for everything, and using git
-submodules whenever possible.
+- **Emacs** with custom configuration
+- **Languages**: Go, Python, Clojure
+- **DevOps**: Docker, docker-compose, kind, kubectl, helm
+- **Shell**: Zsh with Oh-My-Zsh, Powerlevel10k, tmux
+- **Tools**: direnv, ripgrep, fzf, mosh, git
 
-To keep submodules at their proper versions, you could include something like
-`git submodule update --init --recursive` in your `install.conf.yaml`.
+## Quick start (fresh Ubuntu/Debian)
 
-To upgrade your submodules to their latest versions, you could periodically run
-`git submodule update --init --remote`.
+```bash
+curl -fsSL https://raw.githubusercontent.com/Izpa/dotfiles/master/bootstrap.sh | bash
+```
 
-Inspiration
------------
+Or step by step:
 
-If you're looking for inspiration for how to structure your dotfiles or what
-kinds of things you can include, you could take a look at some repos using
-Dotbot.
+```bash
+# 1. Install Nix
+sh <(curl -L https://nixos.org/nix/install) --daemon
 
-* [anishathalye's dotfiles][anishathalye_dotfiles]
-* [csivanich's dotfiles][csivanich_dotfiles]
-* [m45t3r's dotfiles][m45t3r_dotfiles]
-* [alexwh's dotfiles][alexwh_dotfiles]
-* [azd325's dotfiles][azd325_dotfiles]
-* [wazery's dotfiles][wazery_dotfiles]
-* [thirtythreeforty's dotfiles][thirtythreeforty_dotfiles]
+# 2. Restart shell or source nix
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
-And there are about [700 more here][dotbot-users].
+# 3. Enable flakes
+mkdir -p ~/.config/nix
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
-If you're using Dotbot and you'd like to include a link to your dotfiles here
-as an inspiration to others, please submit a pull request.
+# 4. Clone and install
+git clone --recurse-submodules https://github.com/Izpa/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+nix run home-manager -- switch --flake .#dev
+```
 
-License
--------
+## Claude Code
 
-This software is hereby released into the public domain. That means you can do
-whatever you want with it without restriction. See `LICENSE.md` for details.
+Claude Code uses an encrypted API key for security. The key is encrypted with [age](https://github.com/FiloSottile/age) and decrypted only in memory when running.
 
-That being said, I would appreciate it if you could maintain a link back to
-Dotbot (or this repository) to help other people discover Dotbot.
+### Setup (on local machine)
 
-[dotbot]: https://github.com/anishathalye/dotbot
-[fork]: https://github.com/anishathalye/dotfiles_template/fork
-[template]: https://github.com/anishathalye/dotfiles_template/generate
-[anishathalye_dotfiles]: https://github.com/anishathalye/dotfiles
-[csivanich_dotfiles]: https://github.com/csivanich/dotfiles
-[m45t3r_dotfiles]: https://github.com/m45t3r/dotfiles
-[alexwh_dotfiles]: https://github.com/alexwh/dotfiles
-[azd325_dotfiles]: https://github.com/Azd325/dotfiles
-[wazery_dotfiles]: https://github.com/wazery/dotfiles
-[thirtythreeforty_dotfiles]: https://github.com/thirtythreeforty/dotfiles
-[dotbot-users]: https://github.com/anishathalye/dotbot/wiki/Users
+```bash
+# 1. Generate encryption key
+make claude-keygen
+
+# 2. Encrypt your API key
+make claude-encrypt KEY=sk-ant-api03-xxxxx
+
+# 3. Copy to server
+make claude-copy HOST=user@server
+```
+
+### Usage (on server)
+
+```bash
+claude-init
+```
+
+The `claude-init` function decrypts the API key, exports it as `ANTHROPIC_API_KEY`, and starts Claude.
+
+### Security
+
+- API key is stored encrypted with age
+- Decrypted only in memory at runtime
+- If server is compromised, attacker needs both the encrypted file and age private key
+- You can rotate keys anytime by regenerating with `make claude-keygen` and re-encrypting
+
+## Remote access with mosh
+
+After installation, mosh-server is available. Open UDP ports for mosh:
+
+```bash
+sudo ufw allow 60000:61000/udp
+```
+
+Connect from client:
+
+```bash
+mosh user@YOUR_SERVER_IP
+```
+
+With tmux (recommended for persistent sessions):
+
+```bash
+mosh user@YOUR_SERVER_IP -- tmux new -A -s main
+```
+
+This connects via mosh and attaches to tmux session "main" (creates if doesn't exist).
+
+For iPad, use [Blink Shell](https://blink.sh/) which has built-in mosh support.
+
+## Emacs recovery
+
+If Emacs hangs or becomes unresponsive:
+
+```bash
+# 1. Soft - send SIGUSR2 (toggle debug-on-quit, may help with loops)
+pkill -USR2 emacs
+
+# 2. Medium - send SIGTERM (graceful shutdown, saves buffers)
+pkill -TERM emacs
+
+# 3. Hard - send SIGKILL (force kill, no save)
+pkill -9 emacs
+```
+
+Or by PID if you have multiple instances:
+
+```bash
+# Find emacs processes
+pgrep -a emacs
+
+# Kill specific PID
+kill -TERM <PID>    # graceful
+kill -9 <PID>       # force
+```
+
+## Updating
+
+```bash
+cd ~/.dotfiles
+git pull
+home-manager switch --flake .
+```
+
+## Structure
+
+```
+.
+├── flake.nix          # Nix flake - entry point
+├── flake.lock         # Locked dependency versions
+├── home.nix           # Home Manager configuration
+├── bootstrap.sh       # Bootstrap script for fresh systems
+└── links/
+    ├── emacs/         # Emacs configuration
+    │   ├── init.el
+    │   └── stuff/     # Modular emacs configs
+    ├── oh-my-zsh/     # Oh-My-Zsh (submodule)
+    └── p10k.zsh       # Powerlevel10k config
+```
+
+## Customization
+
+Edit `home.nix` to add/remove packages or change configuration.
+
+To add a new package:
+```nix
+home.packages = with pkgs; [
+  # ... existing packages
+  your-new-package
+];
+```
+
+Apply changes:
+```bash
+home-manager switch --flake .
+```
+
+## Legacy
+
+The old Dotbot-based setup (`install`, `install.conf.yaml`) is still present for reference but deprecated in favor of Nix/Home Manager.

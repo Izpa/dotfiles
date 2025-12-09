@@ -27,8 +27,9 @@
   :ensure t
   :config
   (load-theme 'solarized-dark t)
-  (set-face-attribute 'default nil :family "Source Code Pro" :height 120)
-  (toggle-frame-fullscreen))
+  (when (display-graphic-p)
+    (set-face-attribute 'default nil :family "Source Code Pro" :height 120)
+    (toggle-frame-fullscreen)))
 
 (provide '00-ui)
 ;;; 00-ui.el ends here

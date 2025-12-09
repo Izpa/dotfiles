@@ -24,6 +24,8 @@ pkgs.mkShell {
     pkgs.postgresql.lib
     pkgs.postgresql
     pkgs.iputils
+    pkgs.nodejs_22
+    pkgs.age
   ];
 }
 
