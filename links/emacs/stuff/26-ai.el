@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; package --- Summaru
 ;;; Commentary:
 
 ;;; Code:
@@ -10,6 +10,8 @@
   :config
   :custom
   (aidermacs-default-chat-mode 'architect)
-  (aidermacs-default-model "openai/gpt-5"))
+  (aidermacs-backend 'vterm)
+  (aidermacs-extra-args '("--thinking-tokens" "30k"))
+  (aidermacs-default-model "openai/gpt-5-mini"))
 
 ;;; 26-ai.el ends here

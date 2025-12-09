@@ -37,13 +37,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(aidermacs all-the-icons cider company counsel direnv envrc
-	       evil-collection evil-escape flycheck general go-eldoc
-	       golden-ratio lsp-treemacs lsp-ui multi-vterm pyvenv
-	       reformatter restclient smartparens solarized-theme
-	       treemacs-evil treemacs-icons-dired treemacs-magit
-	       treemacs-perspective treemacs-projectile vue-mode winum))
+ '(package-selected-packages nil)
  '(safe-local-variable-values
    '((sql-connection-alist
       (dev-db (sql-product 'postgres)

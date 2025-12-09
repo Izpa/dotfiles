@@ -33,7 +33,7 @@
   (sp-wrap-with-pair "{"))
 
 (leader-def
-  "a" '(aider-transient-menu  :which-key "ai"))
+  "a" '(aidermacs-transient-menu  :which-key "ai"))
 
 (leader-def
   "k" '(:ignore t :which-key "sexp")
