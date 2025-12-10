@@ -40,11 +40,6 @@
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
   (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
 
-;; Session persistence (open buffers, cursor positions)
-(desktop-save-mode 1)
-(setq desktop-dirname user-emacs-directory)  ; store in .emacs.d/
-(setq desktop-restore-eager 5)  ; load first 5 buffers immediately, rest lazily
-
 ;; Save minibuffer history between sessions
 (savehist-mode 1)
 
