@@ -27,9 +27,11 @@
 ;; OSC 52 clipboard support for terminal (works over SSH/mosh/tmux)
 ;; This sends clipboard data directly to the terminal emulator
 (unless (display-graphic-p)
-  ;; Disable default clipboard (doesn't work over SSH)
+  ;; Disable default clipboard completely (doesn't work over SSH)
   (setq select-enable-clipboard nil)
   (setq select-enable-primary nil)
+  (setq interprogram-cut-function nil)
+  (setq interprogram-paste-function nil)
 
   ;; OSC 52 - works in iTerm2, Blink, tmux, etc.
   (defun osc52-copy (text)
