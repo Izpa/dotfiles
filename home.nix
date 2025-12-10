@@ -174,6 +174,7 @@
   };
 
   home.sessionPath = [
+    "$HOME/.nix-profile/bin"
     "$HOME/go/bin"
     "$HOME/.local/bin"
     "$HOME/.npm-global/bin"
