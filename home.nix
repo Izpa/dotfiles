@@ -127,6 +127,8 @@
       # allow-passthrough requires tmux 3.3+, check version before enabling
       if-shell '[ "$(tmux -V | cut -d" " -f2 | tr -d "a-z")" \> "3.2" ]' \
         'set -g allow-passthrough on'
+      # Ensure nix PATH is available in all tmux commands
+      set -g default-command "zsh -l"
     '';
   };
 
