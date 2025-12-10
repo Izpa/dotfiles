@@ -22,6 +22,7 @@
     python3
     python3Packages.pip
     python3Packages.python-lsp-server
+    python3Packages.black
     clojure
     leiningen
     clojure-lsp
