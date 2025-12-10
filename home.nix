@@ -149,16 +149,24 @@
   #---------------------------------------------------------------------------
 
   home.file = {
-    ".emacs.d/init.el".source = ./links/emacs/init.el;
+    ".emacs.d/init.el" = {
+      source = ./links/emacs/init.el;
+      force = true;
+    };
     ".emacs.d/stuff" = {
       source = ./links/emacs/stuff;
       recursive = true;
+      force = true;
     };
     ".oh-my-zsh" = {
       source = ./links/oh-my-zsh;
       recursive = true;
+      force = true;
     };
-    ".p10k.zsh".source = ./links/p10k.zsh;
+    ".p10k.zsh" = {
+      source = ./links/p10k.zsh;
+      force = true;
+    };
   };
 
   #---------------------------------------------------------------------------
