@@ -88,6 +88,10 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initContent = ''
+      # Terminal settings for proper colors
+      export TERM=xterm-direct
+      export COLORTERM=truecolor
+
       # Source Nix profile (for non-NixOS systems)
       if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
         source ~/.nix-profile/etc/profile.d/nix.sh
@@ -146,9 +150,10 @@
     enable = true;
     extraConfig = ''
       set -g set-clipboard on
+      set -g allow-passthrough on
       set -g mouse on
       set -g default-terminal "tmux-256color"
-      set -ag terminal-overrides ",xterm-256color:RGB"
+      set -ag terminal-overrides ",xterm-256color:RGB,xterm-direct:RGB"
     '';
   };
 
