@@ -69,27 +69,64 @@ The `claude-init` function decrypts the API key, exports it as `ANTHROPIC_API_KE
 
 ## Remote access with mosh
 
-After installation, mosh-server is available. Open UDP ports for mosh:
+### Server setup
+
+Open UDP ports for mosh:
 
 ```bash
 sudo ufw allow 60000:61000/udp
 ```
 
-Connect from client:
+Ensure zsh is default shell:
 
 ```bash
-mosh user@YOUR_SERVER_IP
+sudo chsh -s $(which zsh) $USER
 ```
 
-With tmux (recommended for persistent sessions):
+### Client setup (macOS)
 
 ```bash
-mosh user@YOUR_SERVER_IP -- tmux new -A -s main
+brew install mosh
 ```
 
-This connects via mosh and attaches to tmux session "main" (creates if doesn't exist).
+### Connect
 
-For iPad, use [Blink Shell](https://blink.sh/) which has built-in mosh support.
+**1. Simple connection (just shell):**
+
+```bash
+mosh root@YOUR_SERVER_IP
+```
+
+**2. With tmux (persistent shell session):**
+
+```bash
+mosh root@YOUR_SERVER_IP -- tmux new -A -s main
+```
+
+**3. Straight to Emacs in tmux (recommended for development):**
+
+```bash
+mosh root@YOUR_SERVER_IP -- tmux new -A -s emacs "emacs -nw"
+```
+
+This connects via mosh, attaches to tmux session "emacs", and runs Emacs. If session exists — reattaches to running Emacs.
+
+### Blink Shell (iPad)
+
+In Blink, create a new host:
+- Host: `dev` (or any name)
+- Hostname: `YOUR_SERVER_IP`
+- User: `root`
+- Mosh: enabled
+
+Commands:
+```
+mosh dev                                    # just shell
+mosh dev -- tmux new -A -s main             # shell in tmux
+mosh dev -- tmux new -A -s emacs "emacs -nw" # emacs in tmux
+```
+
+Or set the emacs command as default in host settings for one-tap access.
 
 ## Emacs recovery
 

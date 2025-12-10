@@ -87,6 +87,18 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initContent = ''
+      # Source Nix profile (for non-NixOS systems)
+      if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
+        source ~/.nix-profile/etc/profile.d/nix.sh
+      elif [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+        source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+      fi
+
+      # Source Home Manager environment
+      if [[ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]]; then
+        source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+      fi
+
       # Powerlevel10k instant prompt
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
