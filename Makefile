@@ -14,6 +14,8 @@ install:
 		nix run home-manager -- switch --flake .#dev; \
 	fi; \
 	echo "==> Installing Claude Code..."; \
+	mkdir -p $$HOME/.npm-global; \
+	npm config set prefix $$HOME/.npm-global; \
 	npm install -g @anthropic-ai/claude-code; \
 	echo "==> Done! Run 'exec zsh' to reload shell."
 

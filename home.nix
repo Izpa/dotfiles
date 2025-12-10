@@ -197,5 +197,6 @@
   home.sessionPath = [
     "$HOME/go/bin"
     "$HOME/.local/bin"
+    "$HOME/.npm-global/bin"
   ];
 }
