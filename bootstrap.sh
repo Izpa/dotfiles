@@ -99,10 +99,21 @@ nix run home-manager -- switch --flake "$DOTFILES_DIR/flake-local.nix#$USERNAME"
 rm -f "$DOTFILES_DIR/flake-local.nix"
 
 #-----------------------------------------------------------------------------
+# Source new environment
+#-----------------------------------------------------------------------------
+export PATH="$HOME/.nix-profile/bin:$PATH"
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" 2>/dev/null || true
+
+#-----------------------------------------------------------------------------
 # Install Claude Code
 #-----------------------------------------------------------------------------
 echo "==> Installing Claude Code..."
-npm install -g @anthropic-ai/claude-code
+if command -v npm &> /dev/null; then
+    npm install -g @anthropic-ai/claude-code
+else
+    echo "ERROR: npm not found. Please run 'exec zsh' and then 'npm install -g @anthropic-ai/claude-code'"
+    exit 1
+fi
 
 #-----------------------------------------------------------------------------
 # Post-install

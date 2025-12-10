@@ -219,12 +219,7 @@
   "h a" '(hs-show-all :which-key "show all"))
 
 (leader-def
-  "t" '(:ignore t :which-key "terminal")
-  "t t" '(multi-vterm :which-key "new")
-  "t n" '(multi-vterm-next :which-key "next")
-  "t p" '(multi-vterm-prev :which-key "prev")
-  "t c" '(multi-vterm-rename-buffer :which-key "change name")
-  "t r" '(vterm-send-return :which-key "send return"))
+  "t" '(eat :which-key "terminal"))
  
 (leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
