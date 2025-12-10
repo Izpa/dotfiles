@@ -15,7 +15,7 @@
 (setq vterm-always-compile-module t)
 
 (use-package multi-vterm
-        :ensure t
+  :ensure t
 	:config
 	(add-hook 'vterm-mode-hook
 			(lambda ()

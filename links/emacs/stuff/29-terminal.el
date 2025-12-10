@@ -24,10 +24,16 @@
 ;; Автосохранение при потере фокуса (полезно при обрыве связи)
 (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
 
-;; Лучшая работа с clipboard в терминале через tmux
+;; OSC 52 clipboard support for terminal (works over SSH/mosh/tmux)
 (unless (display-graphic-p)
-  (setq select-enable-clipboard t)
-  (setq select-enable-primary t))
+  (setq select-enable-clipboard nil)
+  (setq select-enable-primary nil)
+
+  ;; Use xclip-mode if available, or osc52
+  (use-package xclip
+    :ensure t
+    :config
+    (xclip-mode 1)))
 
 (provide '29-terminal)
 ;;; 29-terminal.el ends here
