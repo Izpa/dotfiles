@@ -13,7 +13,7 @@
   #---------------------------------------------------------------------------
   home.packages = with pkgs; [
     # Editors
-    emacs29
+    emacs
 
     # Languages
     go
