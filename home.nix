@@ -80,10 +80,6 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initContent = ''
-      # Terminal settings for proper colors
-      export TERM=xterm-direct
-      export COLORTERM=truecolor
-
       # Source Nix profile (for non-NixOS systems)
       if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
         source ~/.nix-profile/etc/profile.d/nix.sh

@@ -15,7 +15,6 @@
             (lambda ()
               (when (file-exists-p persp-state-default-file)
                 (persp-state-load persp-state-default-file))
-              ;; (switch-to-buffer "*scratch*")
               (evil-normal-state))))
 
 (provide '13-perspective)
