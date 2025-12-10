@@ -62,12 +62,10 @@
     direnv
     nix-direnv
 
-    # Libraries for emacs vterm
-    libvterm
-    glib
-    glib.dev
-    pkg-config
-    libtool
+    # Libraries for emacs vterm (libvterm-neovim is the correct one for emacs-vterm)
+    libvterm-neovim
+    cmake
+    ncurses
 
     # Database clients
     postgresql
@@ -191,13 +189,11 @@
   home.sessionVariables = {
     EDITOR = "emacs -nw";
     GOPATH = "$HOME/go";
-    TERM = "xterm-256color";
+    TERM = "xterm-direct";
     COLORTERM = "truecolor";
-    # For vterm compilation
-    CMAKE_PREFIX_PATH = "${pkgs.glib.dev}:${pkgs.libvterm}";
-    PKG_CONFIG_PATH = "${pkgs.glib.dev}/lib/pkgconfig:${pkgs.libvterm}/lib/pkgconfig";
-    C_INCLUDE_PATH = "${pkgs.glib.dev}/include/glib-2.0:${pkgs.glib.out}/lib/glib-2.0/include:${pkgs.libvterm}/include";
-    LIBRARY_PATH = "${pkgs.glib.out}/lib:${pkgs.libvterm}/lib";
+    # For vterm compilation (uses libvterm-neovim, not libvterm)
+    CMAKE_PREFIX_PATH = "${pkgs.libvterm-neovim}";
+    LIBRARY_PATH = "${pkgs.libvterm-neovim}/lib";
   };
 
   home.sessionPath = [
