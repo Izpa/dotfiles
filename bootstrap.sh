@@ -109,6 +109,9 @@ source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" 2>/dev/null || true
 #-----------------------------------------------------------------------------
 echo "==> Installing Claude Code..."
 if command -v npm &> /dev/null; then
+    mkdir -p "$HOME/.npm-global"
+    npm config set prefix "$HOME/.npm-global"
+    export PATH="$HOME/.npm-global/bin:$PATH"
     npm install -g @anthropic-ai/claude-code
 else
     echo "ERROR: npm not found. Please run 'exec zsh' and then 'npm install -g @anthropic-ai/claude-code'"
