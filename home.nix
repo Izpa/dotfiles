@@ -65,6 +65,9 @@
     # Libraries for emacs vterm
     libvterm
     glib
+    glib.dev
+    pkg-config
+    libtool
 
     # Database clients
     postgresql
@@ -188,6 +191,8 @@
   home.sessionVariables = {
     EDITOR = "emacs -nw";
     GOPATH = "$HOME/go";
+    TERM = "xterm-256color";
+    COLORTERM = "truecolor";
   };
 
   home.sessionPath = [
