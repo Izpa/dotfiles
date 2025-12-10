@@ -31,6 +31,23 @@ echo "==> Dotfiles directory: $DOTFILES_DIR"
 #-----------------------------------------------------------------------------
 echo "==> Running home-manager..."
 
+# Detect system architecture
+ARCH=$(uname -m)
+case "$ARCH" in
+  x86_64)  NIX_SYSTEM="x86_64-linux" ;;
+  aarch64) NIX_SYSTEM="aarch64-linux" ;;
+  arm64)   NIX_SYSTEM="aarch64-darwin" ;;
+  *)       NIX_SYSTEM="x86_64-linux" ;;
+esac
+
+# macOS detection
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  case "$ARCH" in
+    x86_64)  NIX_SYSTEM="x86_64-darwin" ;;
+    arm64)   NIX_SYSTEM="aarch64-darwin" ;;
+  esac
+fi
+
 cat > "$DOTFILES_DIR/flake.nix" << EOF
 {
   description = "Local development environment";
@@ -45,7 +62,7 @@ cat > "$DOTFILES_DIR/flake.nix" << EOF
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      system = builtins.currentSystem;
+      system = "$NIX_SYSTEM";
       pkgs = nixpkgs.legacyPackages.\${system};
     in {
       homeConfigurations."$USERNAME" = home-manager.lib.homeManagerConfiguration {
