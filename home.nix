@@ -13,7 +13,7 @@
   #---------------------------------------------------------------------------
   home.packages = with pkgs; [
     # Editors
-    emacs
+    emacs30  # Emacs 30 with native :vc support in use-package
 
     # Languages
     go
