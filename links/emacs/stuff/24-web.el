@@ -28,4 +28,5 @@
   :ensure t
   :mode ("\\.json\\'" . json-mode))
 
+(provide '24-web)
 ;;; 24-web.el ends here

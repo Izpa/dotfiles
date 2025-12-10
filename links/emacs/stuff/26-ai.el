@@ -1,4 +1,4 @@
-;;; package --- Summaru
+;;; package --- Summary
 ;;; Commentary:
 
 ;;; Code:
@@ -23,4 +23,5 @@
   :custom
   (claude-code-terminal-backend 'eat))
 
+(provide '26-ai)
 ;;; 26-ai.el ends here

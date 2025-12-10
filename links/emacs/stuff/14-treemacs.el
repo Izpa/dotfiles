@@ -100,4 +100,5 @@
   :after (treemacs perspective)
   :ensure t
   :config (treemacs-set-scope-type 'Perspectives))
+(provide '14-treemacs)
 ;;; 14-treemacs.el ends here

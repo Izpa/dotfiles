@@ -18,4 +18,5 @@
               (switch-to-buffer "*scratch*")
               (evil-normal-state))))
 
+(provide '13-perspective)
 ;;; 13-perspective.el ends here

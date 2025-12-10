@@ -19,4 +19,5 @@
   :config
   (pyvenv-mode 1))
 
+(provide '21-python)
 ;;; 21-python.el ends here

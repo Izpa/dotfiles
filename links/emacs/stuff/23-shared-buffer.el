@@ -29,3 +29,6 @@
 (advice-add 'evil-delete :after #'yank-to-clipboard-after-evil-delete)
 (advice-add 'evil-delete-line :after #'yank-to-clipboard-after-evil-delete)
 
+(provide '23-shared-buffer)
+;;; 23-shared-buffer.el ends here
+

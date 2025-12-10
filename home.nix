@@ -25,7 +25,7 @@
     clojure
     leiningen
     clojure-lsp
-    nodejs  # for copilot and other tools
+    nodejs_22  # for copilot and other tools
 
     # Build tools
     gcc

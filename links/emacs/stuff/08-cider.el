@@ -15,4 +15,5 @@
   :config
   (cljr-add-keybindings-with-prefix "C-c C-r"))
 
+(provide '08-cider)
 ;;; 08-cider.el ends here

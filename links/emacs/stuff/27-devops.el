@@ -24,4 +24,5 @@
   :ensure t
   :after kubernetes)
 
+(provide '27-devops)
 ;;; 27-devops.el ends here

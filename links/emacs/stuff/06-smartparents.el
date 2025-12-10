@@ -14,4 +14,5 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(provide '06-smartparens)
 ;;; 06-smartparens.el ends here

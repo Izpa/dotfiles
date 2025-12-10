@@ -15,4 +15,5 @@
 
 (setq-default tab-width 4)
 
+(provide '22-go)
 ;;; 22-go.el ends here

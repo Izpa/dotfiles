@@ -19,4 +19,5 @@
          ("\\.markdown\\'" . markdown-mode)
          ("README\\.md\\'" . gfm-mode)))
 
+(provide '28-editing)
 ;;; 28-editing.el ends here

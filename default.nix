@@ -13,7 +13,7 @@ pkgs.mkShell {
     pkgs.leiningen
     pkgs.zsh
     pkgs.cmake
-    pkgs.libvterm-neovim
+    pkgs.libvterm
     pkgs.direnv
     pkgs.glib
     pkgs.pkg-config

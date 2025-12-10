@@ -4,7 +4,7 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git colored-man-pages colorize pip python brew macos kubectl zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git colored-man-pages colorize pip python kubectl)
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -17,4 +17,4 @@ if [[ -z $SSH_AUTH_SOCK && ${#socks[@]} -gt 0 && -S ${socks[1]} ]]; then
 fi
 
 export GOPATH="$HOME/go"
-export PATH="/usr/local/sbin:/usr/local/opt/mysql@5.7/bin:/Users/izpa/.gravie/bin:$PATH:/usr/local/go/gin:$GOPATH/bin:/usr/local/go/bin:/usr/local/opt/arm-none-eabi-gcc@8/bin:/Users/izpa/Library/Python/3.12/bin:/Users/izpa/.local/bin"
+export PATH="$GOPATH/bin:$HOME/.local/bin:$PATH"

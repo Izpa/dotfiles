@@ -158,6 +158,3 @@ Apply changes:
 home-manager switch --flake .
 ```
 
-## Legacy
-
-The old Dotbot-based setup (`install`, `install.conf.yaml`) is still present for reference but deprecated in favor of Nix/Home Manager.
