@@ -6,9 +6,9 @@
 ;; Import Emacs package manager
 (require 'package)
 ;; Add largest package repository (Melpa)
-(setq package-archives '(("melpa-stable" . "https://stable.melpa.org/packages")
-                         ("melpa" . "https://melpa.org/packages/")
-			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
 ;; Initialize Emacs package manager
 (package-initialize)
