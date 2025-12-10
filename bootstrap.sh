@@ -3,7 +3,7 @@ set -e
 
 #=============================================================================
 # Bootstrap script for fresh Ubuntu/Debian server
-# Installs Nix, enables flakes, and deploys home-manager configuration
+# Installs Nix, enables flakes, clones dotfiles, and runs install
 #=============================================================================
 
 REPO_URL="https://github.com/Izpa/dotfiles.git"
@@ -47,76 +47,11 @@ else
     git submodule update --init --recursive
 fi
 
+#-----------------------------------------------------------------------------
+# Run install script
+#-----------------------------------------------------------------------------
 cd "$DOTFILES_DIR"
-
-#-----------------------------------------------------------------------------
-# Determine username and home directory
-#-----------------------------------------------------------------------------
-USERNAME=$(whoami)
-HOME_DIR=$HOME
-
-echo "==> Configuring for user: $USERNAME"
-echo "==> Home directory: $HOME_DIR"
-
-#-----------------------------------------------------------------------------
-# Run home-manager
-#-----------------------------------------------------------------------------
-echo "==> Running home-manager..."
-
-# Create a temporary flake with correct username
-cat > "$DOTFILES_DIR/flake-local.nix" << EOF
-{
-  description = "Local development environment";
-
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = builtins.currentSystem;
-      pkgs = nixpkgs.legacyPackages.\${system};
-    in {
-      homeConfigurations."$USERNAME" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix ];
-        extraSpecialArgs = {
-          username = "$USERNAME";
-          homeDirectory = "$HOME_DIR";
-        };
-      };
-    };
-}
-EOF
-
-nix run home-manager -- switch --flake "$DOTFILES_DIR/flake-local.nix#$USERNAME"
-
-# Clean up temporary flake
-rm -f "$DOTFILES_DIR/flake-local.nix"
-
-#-----------------------------------------------------------------------------
-# Source new environment
-#-----------------------------------------------------------------------------
-export PATH="$HOME/.nix-profile/bin:$PATH"
-source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" 2>/dev/null || true
-
-#-----------------------------------------------------------------------------
-# Install Claude Code
-#-----------------------------------------------------------------------------
-echo "==> Installing Claude Code..."
-if command -v npm &> /dev/null; then
-    mkdir -p "$HOME/.npm-global"
-    npm config set prefix "$HOME/.npm-global"
-    export PATH="$HOME/.npm-global/bin:$PATH"
-    npm install -g @anthropic-ai/claude-code
-else
-    echo "ERROR: npm not found. Please run 'exec zsh' and then 'npm install -g @anthropic-ai/claude-code'"
-    exit 1
-fi
+./scripts/install.sh
 
 #-----------------------------------------------------------------------------
 # Post-install
@@ -128,7 +63,5 @@ echo "Next steps:"
 echo "  1. Open a new terminal or run: exec zsh"
 echo "  2. Run 'emacs' to install Emacs packages on first launch"
 echo ""
-echo "See README.md for Claude Code setup and other documentation."
-echo ""
 echo "To update later:"
-echo "  cd $DOTFILES_DIR && git pull && home-manager switch --flake ."
+echo "  cd $DOTFILES_DIR && make update"

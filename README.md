@@ -8,7 +8,7 @@ Portable development environment with Nix, Home Manager, and Flakes.
 - **Languages**: Go, Python, Clojure
 - **DevOps**: Docker, docker-compose, kind, kubectl, helm
 - **Shell**: Zsh with Oh-My-Zsh, Powerlevel10k, tmux
-- **Tools**: direnv, ripgrep, fzf, mosh, git
+- **Tools**: direnv, ripgrep, fzf, mosh, git, Claude Code
 
 ## Quick start (fresh Ubuntu/Debian)
 
@@ -32,7 +32,23 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 # 4. Clone and install
 git clone --recurse-submodules https://github.com/Izpa/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-nix run home-manager -- switch --flake .#dev
+make install
+```
+
+## Updating
+
+```bash
+cd ~/.dotfiles
+make update
+```
+
+Or manually:
+
+```bash
+cd ~/.dotfiles
+git pull
+git submodule update --init --recursive
+make install
 ```
 
 ## Remote access with mosh
@@ -138,15 +154,6 @@ kill -TERM <PID>    # graceful
 kill -9 <PID>       # force
 ```
 
-## Updating
-
-```bash
-cd ~/.dotfiles
-git pull
-nix flake update        # Update flake.lock
-home-manager switch --flake .
-```
-
 ## Structure
 
 ```
@@ -154,7 +161,10 @@ home-manager switch --flake .
 ├── flake.nix          # Nix flake - entry point
 ├── flake.lock         # Locked dependency versions
 ├── home.nix           # Home Manager configuration
+├── Makefile           # make install / make update
 ├── bootstrap.sh       # Bootstrap script for fresh systems
+├── scripts/
+│   └── install.sh     # Main install script
 └── links/
     ├── emacs/         # Emacs configuration
     │   ├── init.el
@@ -177,6 +187,5 @@ home.packages = with pkgs; [
 
 Apply changes:
 ```bash
-home-manager switch --flake .
+make install
 ```
-
