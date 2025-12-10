@@ -36,6 +36,18 @@
           homeDirectory = "/home/dev";
         };
 
+        "root" = mkHomeConfig {
+          system = "x86_64-linux";
+          username = "root";
+          homeDirectory = "/root";
+        };
+
+        "root-arm" = mkHomeConfig {
+          system = "aarch64-linux";
+          username = "root";
+          homeDirectory = "/root";
+        };
+
         # macOS configurations
         "izpa" = mkHomeConfig {
           system = "aarch64-darwin";
