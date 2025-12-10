@@ -35,38 +35,6 @@ cd ~/.dotfiles
 nix run home-manager -- switch --flake .#dev
 ```
 
-## Claude Code
-
-Claude Code uses an encrypted API key for security. The key is encrypted with [age](https://github.com/FiloSottile/age) and decrypted only in memory when running.
-
-### Setup (on local machine)
-
-```bash
-# 1. Generate encryption key
-make claude-keygen
-
-# 2. Encrypt your API key
-make claude-encrypt KEY=sk-ant-api03-xxxxx
-
-# 3. Copy to server
-make claude-copy HOST=user@server
-```
-
-### Usage (on server)
-
-```bash
-claude-init
-```
-
-The `claude-init` function decrypts the API key, exports it as `ANTHROPIC_API_KEY`, and starts Claude.
-
-### Security
-
-- API key is stored encrypted with age
-- Decrypted only in memory at runtime
-- If server is compromised, attacker needs both the encrypted file and age private key
-- You can rotate keys anytime by regenerating with `make claude-keygen` and re-encrypting
-
 ## Remote access with mosh
 
 ### Server setup

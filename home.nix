@@ -65,9 +65,6 @@
 
     # Database clients
     postgresql
-
-    # Security / encryption
-    age
   ];
 
   #---------------------------------------------------------------------------
@@ -118,27 +115,6 @@
         export SSH_AUTH_SOCK=''${socks[1]}
       fi
 
-      # Claude Code with encrypted API key
-      claude-init() {
-        local key_file="$HOME/.config/claude/age-key.txt"
-        local encrypted_file="$HOME/.config/claude/api-key.age"
-
-        if [[ ! -f "$key_file" ]]; then
-          echo "Error: Age key not found at $key_file"
-          echo "Generate with: age-keygen -o $key_file"
-          return 1
-        fi
-
-        if [[ ! -f "$encrypted_file" ]]; then
-          echo "Error: Encrypted API key not found at $encrypted_file"
-          echo "Create with: echo 'ANTHROPIC_API_KEY=sk-ant-...' | age -e -r \$(age-keygen -y $key_file) > $encrypted_file"
-          return 1
-        fi
-
-        eval "$(age -d -i "$key_file" "$encrypted_file")"
-        echo "API key loaded. Starting Claude..."
-        claude "$@"
-      }
     '';
   };
 
