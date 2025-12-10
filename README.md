@@ -90,22 +90,15 @@ mosh root@YOUR_SERVER_IP -- tmux new -A -s main
 **3. Straight to Emacs in tmux (recommended for development):**
 
 ```bash
-mosh --server=/root/.nix-profile/bin/mosh-server root@YOUR_SERVER_IP -- tmux new -A -s emacs "emacs -nw"
+mosh --server=/root/.nix-profile/bin/mosh-server root@YOUR_SERVER_IP -- tmux new -A -s emacs "zsh -lc 'emacs -nw'"
 ```
 
-This connects via mosh, attaches to tmux session "emacs", and runs Emacs. If session exists — reattaches to running Emacs.
+This connects via mosh, attaches to tmux session "emacs", and runs Emacs with full nix PATH. If session exists — reattaches to running Emacs.
 
 **4. Kill and restart Emacs session:**
 
 ```bash
-mosh --server=/root/.nix-profile/bin/mosh-server root@YOUR_SERVER_IP -- tmux kill-session -t emacs
-mosh --server=/root/.nix-profile/bin/mosh-server root@YOUR_SERVER_IP -- tmux new -A -s emacs "emacs -nw"
-```
-
-Or in one command:
-
-```bash
-mosh --server=/root/.nix-profile/bin/mosh-server root@YOUR_SERVER_IP -- sh -c 'tmux kill-session -t emacs 2>/dev/null; tmux new -s emacs "emacs -nw"'
+mosh --server=/root/.nix-profile/bin/mosh-server root@YOUR_SERVER_IP -- sh -c 'tmux kill-session -t emacs 2>/dev/null; tmux new -s emacs "zsh -lc '\''emacs -nw'\''"'
 ```
 
 ### Blink Shell (iPad)
@@ -120,10 +113,9 @@ Set mosh server path in Blink host settings: `/root/.nix-profile/bin/mosh-server
 
 Commands:
 ```
-mosh dev                                              # just shell
-mosh dev -- tmux new -A -s main                       # shell in tmux
-mosh dev -- tmux new -A -s emacs "emacs -nw"          # emacs in tmux
-mosh dev -- sh -c 'tmux kill-session -t emacs 2>/dev/null; tmux new -s emacs "emacs -nw"'  # restart emacs
+mosh dev                                                  # just shell
+mosh dev -- tmux new -A -s main                           # shell in tmux
+mosh dev -- tmux new -A -s emacs "zsh -lc 'emacs -nw'"    # emacs in tmux
 ```
 
 Or set the emacs command as default in host settings for one-tap access.
