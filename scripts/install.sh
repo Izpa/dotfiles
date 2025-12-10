@@ -61,9 +61,14 @@ cat > "$DOTFILES_DIR/flake.nix" << EOF
 EOF
 
 cd "$DOTFILES_DIR"
-nix run home-manager -- switch --flake ".#$USERNAME"
+
+# Add flake.nix to git index temporarily (nix requires tracked files)
+git add -f flake.nix
+
+nix run home-manager -- switch --flake ".#$USERNAME" --no-write-lock-file
 
 # Clean up temporary flake
+git reset HEAD flake.nix 2>/dev/null || true
 rm -f "$DOTFILES_DIR/flake.nix" "$DOTFILES_DIR/flake.lock"
 
 #-----------------------------------------------------------------------------
