@@ -13,22 +13,42 @@
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+
+      # Helper to create home configuration for any system/user
+      mkHomeConfig = { system, username, homeDirectory }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [ ./home.nix ];
+          extraSpecialArgs = { inherit username homeDirectory; };
+        };
     in {
       homeConfigurations = {
-        # Generic configuration - works on any system
-        # Usage: home-manager switch --flake .#dev
-        "dev" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [ ./home.nix ];
-          extraSpecialArgs = {
-            username = "dev";
-            homeDirectory = "/home/dev";
-          };
+        # Linux configurations
+        "dev" = mkHomeConfig {
+          system = "x86_64-linux";
+          username = "dev";
+          homeDirectory = "/home/dev";
+        };
+
+        "dev-arm" = mkHomeConfig {
+          system = "aarch64-linux";
+          username = "dev";
+          homeDirectory = "/home/dev";
+        };
+
+        # macOS configurations
+        "izpa" = mkHomeConfig {
+          system = "aarch64-darwin";
+          username = "izpa";
+          homeDirectory = "/Users/izpa";
+        };
+
+        "izpa-x86" = mkHomeConfig {
+          system = "x86_64-darwin";
+          username = "izpa";
+          homeDirectory = "/Users/izpa";
         };
       };
-
-      # Allow running with: nix run .#homeConfigurations.dev.activationPackage
-      # Or more conveniently via bootstrap.sh
 
       # Development shell for working on this config
       devShells = forAllSystems (system:

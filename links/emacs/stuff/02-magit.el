@@ -8,9 +8,6 @@
   :bind
   (("C-c g" . magit-status)))
 
-(use-package yaml
-  :ensure t)
-
 (use-package forge
   :ensure t
   :after magit)

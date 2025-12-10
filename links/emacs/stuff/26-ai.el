@@ -12,7 +12,7 @@
   (aidermacs-default-chat-mode 'architect)
   (aidermacs-backend 'vterm)
   (aidermacs-extra-args '("--thinking-tokens" "30k"))
-  (aidermacs-default-model "openai/gpt-5-mini"))
+  (aidermacs-default-model "openai/gpt-4o-mini"))
 
 (use-package eat
   :ensure t)
