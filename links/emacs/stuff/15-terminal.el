@@ -9,7 +9,7 @@
   :ensure t
   :config
   ;; Kill process when buffer is killed
-  (setq eat-kill-buffer-on-exit t)
+  (setq eat-kill-buffer-on-exit nil)
 
   ;; Evil integration - use insert mode to type, ESC to exit
   (with-eval-after-load 'evil
