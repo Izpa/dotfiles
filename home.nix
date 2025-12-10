@@ -98,10 +98,6 @@
       [[ -f $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-      # Go
-      export GOPATH="$HOME/go"
-      export PATH="$GOPATH/bin:$PATH"
-
       # SSH agent forwarding
       socks=(/tmp/ssh-*/agent.*(N))
       if [[ -z $SSH_AUTH_SOCK && ''${#socks[@]} -gt 0 && -S ''${socks[1]} ]]; then

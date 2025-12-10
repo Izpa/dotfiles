@@ -122,6 +122,7 @@ kill -9 <PID>       # force
 ```bash
 cd ~/.dotfiles
 git pull
+nix flake update        # Update flake.lock
 home-manager switch --flake .
 ```
 

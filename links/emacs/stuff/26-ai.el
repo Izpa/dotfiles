@@ -7,7 +7,7 @@
   :ensure t)
 
 (use-package aidermacs
-  :config
+  :ensure t
   :custom
   (aidermacs-default-chat-mode 'architect)
   (aidermacs-backend 'vterm)
