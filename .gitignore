@@ -1,6 +1,7 @@
 *.DS_Store
 *flycheck_*
-flake-local.nix
+flake.nix
+flake.lock
 
 !links/emacs/
 links/emacs/*

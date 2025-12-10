@@ -31,7 +31,7 @@ echo "==> Dotfiles directory: $DOTFILES_DIR"
 #-----------------------------------------------------------------------------
 echo "==> Running home-manager..."
 
-cat > "$DOTFILES_DIR/flake-local.nix" << EOF
+cat > "$DOTFILES_DIR/flake.nix" << EOF
 {
   description = "Local development environment";
 
@@ -61,10 +61,10 @@ cat > "$DOTFILES_DIR/flake-local.nix" << EOF
 EOF
 
 cd "$DOTFILES_DIR"
-nix run home-manager -- switch --flake "./flake-local.nix#$USERNAME"
+nix run home-manager -- switch --flake ".#$USERNAME"
 
 # Clean up temporary flake
-rm -f "$DOTFILES_DIR/flake-local.nix"
+rm -f "$DOTFILES_DIR/flake.nix" "$DOTFILES_DIR/flake.lock"
 
 #-----------------------------------------------------------------------------
 # Install Claude Code
