@@ -19,7 +19,11 @@
   :ensure t
   :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
   :custom
-  (claude-code-terminal-backend 'eat))
+  (claude-code-terminal-backend 'eat)
+  :config
+  ;; Delete .elc if it causes issues (docstring bug in byte-compilation)
+  (let ((elc (locate-library "claude-code.elc")))
+    (when elc (delete-file elc))))
 
 (provide '26-ai)
 ;;; 26-ai.el ends here
