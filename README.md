@@ -158,13 +158,11 @@ kill -9 <PID>       # force
 
 ```
 .
-├── flake.nix          # Nix flake - entry point
-├── flake.lock         # Locked dependency versions
 ├── home.nix           # Home Manager configuration
 ├── Makefile           # make install / make update
 ├── bootstrap.sh       # Bootstrap script for fresh systems
 ├── scripts/
-│   └── install.sh     # Main install script
+│   └── install.sh     # Main install script (generates flake dynamically)
 └── links/
     ├── emacs/         # Emacs configuration
     │   ├── init.el

@@ -220,7 +220,7 @@
 
 (leader-def
   "t" '(eat :which-key "terminal"))
- 
+
 (leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
 

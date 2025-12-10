@@ -62,7 +62,6 @@
     direnv
     nix-direnv
 
-
     # Database clients
     postgresql
   ];
