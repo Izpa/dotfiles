@@ -121,10 +121,12 @@
     enable = true;
     extraConfig = ''
       set -g set-clipboard on
-      set -g allow-passthrough on
       set -g mouse on
       set -g default-terminal "tmux-256color"
       set -ag terminal-overrides ",xterm-256color:RGB,xterm-direct:RGB"
+      # allow-passthrough requires tmux 3.3+, check version before enabling
+      if-shell '[ "$(tmux -V | cut -d" " -f2 | tr -d "a-z")" \> "3.2" ]' \
+        'set -g allow-passthrough on'
     '';
   };
 
