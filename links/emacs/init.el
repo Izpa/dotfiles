@@ -13,8 +13,7 @@
 ;; Initialize Emacs package manager
 (package-initialize)
 
-;; (setq byte-compile-warnings '(not docstrings multiple-docstrings suspicious free-vars unresolved redefine obsolete))
-(setq byte-compile-warnings 'nil)
+(setq byte-compile-warnings nil)
 (setq warning-suppress-types '((comp)))
 
 ;; Pull package list on first Emacs start

@@ -17,21 +17,6 @@
 (leader-def
   "/" 'counsel-rg)
 
-(defun sp-wrap-round ()
-  "Wrap the following expression in round parentheses."
-  (interactive)
-  (sp-wrap-with-pair "("))
-
-(defun sp-wrap-square ()
-  "Wrap the following expression in square parentheses."
-  (interactive)
-  (sp-wrap-with-pair "["))
-
-(defun sp-wrap-curly ()
-  "Wrap the following expression in curly parentheses."
-  (interactive)
-  (sp-wrap-with-pair "{"))
-
 (leader-def
   "a" '(aidermacs-transient-menu  :which-key "aider"))
 
@@ -56,9 +41,9 @@
 
 (leader-def
   "k" '(:ignore t :which-key "sexp")
-  "k w" '(sp-wrap-round :which-key "wrap ()")
-  "k [" '(sp-wrap-square :which-key "wrap []")
-  "k {" '(sp-wrap-curly :which-key "wrap {}")
+  "k w" '((lambda () (interactive) (sp-wrap-with-pair "(")) :which-key "wrap ()")
+  "k [" '((lambda () (interactive) (sp-wrap-with-pair "[")) :which-key "wrap []")
+  "k {" '((lambda () (interactive) (sp-wrap-with-pair "{")) :which-key "wrap {}")
   "k ," '(sp-forward-barf-sexp :which-key "barf ->")
   "k ." '(sp-forward-slurp-sexp :which-key "slurp ->")
   "k <" '(sp-backward-barf-sexp :which-key "<- barf")
@@ -177,7 +162,6 @@
  "<escape>" 'keyboard-escape-quit)
 
 (leader-def
-  ;;"p" 'projectile-command-map
   "p" '(:ignore t :which-key "project")
   "p f" '(projectile-find-file :which-key "find file in project")
   "p a" '(projectile-toggle-between-implementation-and-test :which-key "impl <-> test")
