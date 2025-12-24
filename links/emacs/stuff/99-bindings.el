@@ -202,8 +202,26 @@
   "h c" '(hs-hide-all :which-key "hide all")
   "h a" '(hs-show-all :which-key "show all"))
 
+(defun eat-new ()
+  "Open a new eat terminal with unique buffer name."
+  (interactive)
+  (let ((eat-buffer-name (generate-new-buffer-name "*eat*")))
+    (eat)))
+
+(defun eat-switch ()
+  "Switch to existing eat buffer or create new one."
+  (interactive)
+  (let ((eat-buffers (cl-remove-if-not
+                      (lambda (b) (with-current-buffer b (eq major-mode 'eat-mode)))
+                      (buffer-list))))
+    (if eat-buffers
+        (switch-to-buffer (car eat-buffers))
+      (eat))))
+
 (leader-def
-  "t" '(eat :which-key "terminal"))
+  "t" '(:ignore t :which-key "terminal")
+  "t t" '(eat-new :which-key "new terminal")
+  "t s" '(eat-switch :which-key "switch to terminal"))
 
 (leader-def
   "SPC" '(execute-extended-command :which-key "M-x"))
