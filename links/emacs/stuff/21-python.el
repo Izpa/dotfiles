@@ -1,9 +1,8 @@
 ;;; 21-python.el --- Python config
-;;; Code:
+;;; Commentary:
+;; Python support with eglot (configured in 12-lsp.el)
 
-(use-package eglot
-  :ensure t
-  :hook (python-mode . eglot-ensure))
+;;; Code:
 
 (use-package reformatter
   :ensure t)
@@ -16,8 +15,7 @@
 
 (use-package pyvenv
   :ensure t
-  :config
-  (pyvenv-mode 1))
+  :hook (python-mode . pyvenv-mode))
 
 (provide '21-python)
 ;;; 21-python.el ends here

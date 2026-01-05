@@ -13,6 +13,9 @@
 ;; Initialize Emacs package manager
 (package-initialize)
 
+;; Enable package quickstart for faster loading
+(setq package-quickstart t)
+
 (setq byte-compile-warnings nil)
 (setq warning-suppress-types '((comp)))
 

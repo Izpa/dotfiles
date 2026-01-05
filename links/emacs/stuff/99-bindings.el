@@ -14,8 +14,16 @@
   "f f" '(counsel-find-file :which-key "find file")
   "f s" '(save-buffer :which-key "save file"))
 
+(defun my/search-rg ()
+  "Search with ripgrep using available backend."
+  (interactive)
+  (cond
+   ((fboundp 'consult-ripgrep) (consult-ripgrep))
+   ((fboundp 'counsel-rg) (counsel-rg))
+   (t (grep-find))))
+
 (leader-def
-  "/" 'counsel-rg)
+  "/" '(my/search-rg :which-key "search"))
 
 (leader-def
   "a" '(aidermacs-transient-menu  :which-key "aider"))
@@ -54,7 +62,7 @@
 
 (leader-def
   ";" '(comment-or-uncomment-region :which-key "comment")
-  "=" '(lsp-format-buffer :which-key "format buffer"))
+  "=" '(eglot-format-buffer :which-key "format buffer"))
 
 (leader-def
   "w" '(:ignore t :which-key "window")
@@ -112,24 +120,14 @@
   "m t p" '(cider-test-run-project-tests :which-key "project")
   "m t t" '(cider-test-run-test :which-key "focus")
   "m t n" '(cider-test-run-ns-tests :which-key "namespace")
-  "m t c" '(lsp-clojure-create-test :which-key "create")
   "m g" '(:ignore t :which-key "goto")
-  "m g d" '(lsp-find-definition :which-key "defn")
-  "m g r" '(lsp-find-references :which-key "ref")
+  "m g d" '(xref-find-definitions :which-key "defn")
+  "m g r" '(xref-find-references :which-key "ref")
   "m f" '(:ignore t :which-key "format")
   "m f b" '(cider-format-buffer :which-key "buffer")
-  "m w" '(:ignore t :which-key "WIP")
-  "m w c" 'lsp-clojure-clean-ns
-  "m w d" 'lsp-clojure-move-coll-entry-down
-  "m w e" 'lsp-clojure-expand-let
-  "m w f" 'lsp-clojure-create-function
-  "m w m" 'lsp-clojure-move-form
-  "m w l" 'lsp-clojure-move-to-let
-  "m w u" 'lsp-clojure-move-coll-entry-up
-  "m w p" 'lsp-clojure-cycle-privacy
-  "m w r" 'lsp-clojure-add-import-to-namespace
-  "m w s" 'lsp-clojure-sort-map
-  "m w x" 'lsp-clojure-extract-function)
+  "m l" '(:ignore t :which-key "lsp")
+  "m l r" '(eglot-rename :which-key "rename")
+  "m l a" '(eglot-code-actions :which-key "actions"))
 
 (leader-def
   "b" '(:ignore t :which-key "buffer")

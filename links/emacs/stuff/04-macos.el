@@ -1,11 +1,14 @@
-;;; package --- Summary
+;;; 04-macos --- macOS specific settings
 ;;; Commentary:
+;; Settings for running Emacs on macOS
 
 ;;; Code:
 
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns x))
+  :custom
+  (exec-path-from-shell-variables '("PATH" "GOPATH" "GOBIN"))
   :config
   (exec-path-from-shell-initialize))
 
