@@ -89,17 +89,14 @@ git reset HEAD flake.nix 2>/dev/null || true
 rm -f "$DOTFILES_DIR/flake.nix" "$DOTFILES_DIR/flake.lock"
 
 #-----------------------------------------------------------------------------
-# Install Claude Code
+# Install Claude Code via official native installer
+# Docs: https://docs.claude.com/en/docs/claude-code/setup
 #-----------------------------------------------------------------------------
-echo "==> Installing Claude Code..."
-if command -v npm &> /dev/null; then
-    mkdir -p "$HOME/.npm-global"
-    npm config set prefix "$HOME/.npm-global"
-    export PATH="$HOME/.npm-global/bin:$PATH"
-    npm install -g @anthropic-ai/claude-code
+if ! [ -x "$HOME/.local/bin/claude" ]; then
+    echo "==> Installing Claude Code (native installer)..."
+    curl -fsSL https://claude.ai/install.sh | bash
 else
-    echo "WARNING: npm not found. Claude Code not installed."
-    echo "After 'exec zsh', run: npm install -g @anthropic-ai/claude-code"
+    echo "==> Claude Code already installed at ~/.local/bin/claude (self-updating)."
 fi
 
 echo ""
