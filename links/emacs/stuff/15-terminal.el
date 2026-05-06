@@ -62,7 +62,7 @@
   ;; OSC 52 - works in iTerm2, Blink, tmux, etc.
   (defun osc52-copy (text)
     "Copy TEXT to clipboard using OSC 52 escape sequence."
-    (let ((encoded (base64-encode-string text t)))
+    (let ((encoded (base64-encode-string (encode-coding-string text 'utf-8) t)))
       (send-string-to-terminal (format "\e]52;c;%s\a" encoded))))
 
   ;; Hook into evil's yank
