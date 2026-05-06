@@ -170,9 +170,9 @@
   };
 
   home.sessionPath = [
+    "$HOME/.npm-global/bin"  # npm packages first (for claude-code updates)
     "$HOME/.nix-profile/bin"
     "$HOME/go/bin"
     "$HOME/.local/bin"
-    "$HOME/.npm-global/bin"
   ];
 }
