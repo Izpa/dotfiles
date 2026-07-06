@@ -134,6 +134,19 @@
   "m l a" '(eglot-code-actions :which-key "actions"))
 
 (leader-def
+  :keymaps 'lua-mode-map
+  "m" '(:ignore t :which-key "luau")
+  "m s" '(my/luau-serve :which-key "rojo serve")
+  "m m" '(my/luau-sourcemap :which-key "sourcemap")
+  "m l" '(my/luau-selene :which-key "selene lint")
+  "m g" '(:ignore t :which-key "goto")
+  "m g d" '(xref-find-definitions :which-key "definition")
+  "m g r" '(xref-find-references :which-key "references")
+  "m r" '(eglot-rename :which-key "rename")
+  "m a" '(eglot-code-actions :which-key "code actions")
+  "m f" '(eglot-format-buffer :which-key "format buffer"))
+
+(leader-def
   "b" '(:ignore t :which-key "buffer")
   "b b" '(persp-switch-to-buffer* :which-key "switch buffer")
   "b a" '(consult-buffer :which-key "all buffers")
