@@ -79,14 +79,22 @@ EOF
 
 cd "$DOTFILES_DIR"
 
-# Add flake.nix to git index temporarily (nix requires tracked files)
+# Add flake.nix (+ flake.lock if present) to the git index so nix sees them.
+# flake.nix is generated per-run and gitignored; flake.lock is committed so
+# nixpkgs/home-manager are pinned (run `nix flake update` to bump).
 git add -f flake.nix
+[ -f flake.lock ] && git add -f flake.lock
 
-nix run home-manager -- switch --flake ".#$USERNAME" --no-write-lock-file
+nix run home-manager -- switch --flake ".#$USERNAME"
 
-# Clean up temporary flake
+# Remove only the generated flake.nix from the index; keep flake.lock so it can
+# be committed for reproducible pins.
 git reset HEAD flake.nix 2>/dev/null || true
-rm -f "$DOTFILES_DIR/flake.nix" "$DOTFILES_DIR/flake.lock"
+rm -f "$DOTFILES_DIR/flake.nix"
+if [ -n "$(git status --porcelain flake.lock 2>/dev/null)" ]; then
+    echo "==> flake.lock changed -- commit it to pin dependency versions:"
+    echo "    git add flake.lock && git commit -m 'update flake.lock'"
+fi
 
 #-----------------------------------------------------------------------------
 # Install Claude Code

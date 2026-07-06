@@ -11,22 +11,26 @@
 
 (leader-def
   "f" '(:ignore t :which-key "file")
-  "f f" '(counsel-find-file :which-key "find file")
+  "f f" '(find-file :which-key "find file")
   "f s" '(save-buffer :which-key "save file"))
 
 (defun my/search-rg ()
-  "Search with ripgrep using available backend."
+  "Search with ripgrep via consult, falling back to grep-find."
   (interactive)
-  (cond
-   ((fboundp 'consult-ripgrep) (consult-ripgrep))
-   ((fboundp 'counsel-rg) (counsel-rg))
-   (t (grep-find))))
+  (if (fboundp 'consult-ripgrep)
+      (consult-ripgrep)
+    (grep-find)))
 
 (leader-def
   "/" '(my/search-rg :which-key "search"))
 
 (leader-def
-  "a" '(aidermacs-transient-menu  :which-key "aider"))
+  "a" '(:ignore t :which-key "ai (gptel)")
+  "a a" '(gptel-menu :which-key "menu")
+  "a s" '(gptel-send :which-key "send")
+  "a c" '(gptel :which-key "chat buffer")
+  "a r" '(gptel-rewrite :which-key "rewrite region")
+  "a A" '(gptel-add :which-key "add context"))
 
 (leader-def
   "c" '(:ignore t :which-key "claude")
@@ -76,9 +80,9 @@
   "w g" '(winum-select-window-by-number :which-key "focus by number"))
 
 (general-define-key
- :keymaps 'ivy-mode-map
- "C-j" 'ivy-next-line
- "C-k" 'ivy-previous-line)
+ :keymaps 'vertico-map
+ "C-j" 'vertico-next
+ "C-k" 'vertico-previous)
 
 (leader-def
   :keymaps 'emacs-lisp-mode-map
@@ -131,8 +135,8 @@
 
 (leader-def
   "b" '(:ignore t :which-key "buffer")
-  "b b" '(persp-ivy-switch-buffer :which-key "switch buffer")
-  "b a" '(ivy-switch-buffer :which-key "all buffers")
+  "b b" '(persp-switch-to-buffer* :which-key "switch buffer")
+  "b a" '(consult-buffer :which-key "all buffers")
   "b l" '(evil-switch-to-windows-last-buffer :which-key "last buffer")
   "b p" '(previous-buffer :which-key "previous buffer")
   "b n" '(next-buffer :which-key "next buffer")

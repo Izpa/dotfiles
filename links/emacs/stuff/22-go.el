@@ -1,14 +1,19 @@
-;;; package --- Summary
+;;; 22-go.el --- Go config -*- lexical-binding: t; -*-
 ;;; Commentary:
+;; Go support: eglot (12-lsp.el) for LSP, apheleia (29-apheleia.el) for
+;; format-on-save (gofmt).  go-mode/go-ts-mode hooks set subword + tab-width.
 
 ;;; Code:
 
+(defun my/go-setup ()
+  "Buffer-local settings shared by go-mode and go-ts-mode."
+  (subword-mode 1)
+  (setq-local tab-width 4))
+
 (use-package go-mode
   :ensure t
-  :config
-  (add-hook 'go-mode-hook 'subword-mode)
-  (add-hook 'go-mode-hook (lambda () (setq-local tab-width 4)))
-  (add-hook 'before-save-hook 'gofmt-before-save))
+  :hook ((go-mode . my/go-setup)
+         (go-ts-mode . my/go-setup)))
 
 (use-package go-eldoc
   :ensure t
