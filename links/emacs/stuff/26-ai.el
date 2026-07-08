@@ -1,19 +1,30 @@
-;;; package --- Summary
+;;; 26-ai.el --- AI coding assistants: gptel, claude-code -*- lexical-binding: t; -*-
 ;;; Commentary:
-;;; AI coding assistants: aider, claude-code
+;; Two complementary tools:
+;;  - gptel: lightweight in-buffer LLM chat / region rewrite (Anthropic backend).
+;;  - claude-code: agentic Claude Code CLI running in an eat terminal.
+;; (aidermacs was removed -- claude-code covers the agentic-editor niche, and
+;; it was pinned to a weak model.)
 
 ;;; Code:
 
 (use-package transient
   :ensure t)
 
-(use-package aidermacs
+;; gptel: quick chat / rewrite, using Claude directly.  API key comes from the
+;; ANTHROPIC_API_KEY env var, falling back to ~/.authinfo(.gpg).
+(use-package gptel
   :ensure t
-  :custom
-  (aidermacs-default-chat-mode 'architect)
-  (aidermacs-backend 'eat)
-  (aidermacs-extra-args '("--thinking-tokens" "30k"))
-  (aidermacs-default-model "openai/gpt-4o-mini"))
+  :config
+  (setq gptel-default-mode 'markdown-mode)
+  (setq gptel-model 'claude-opus-4-8)
+  (setq gptel-backend
+        (gptel-make-anthropic "Claude"
+          :stream t
+          :key (lambda ()
+                 (or (getenv "ANTHROPIC_API_KEY")
+                     (auth-source-pick-first-password
+                      :host "api.anthropic.com"))))))
 
 (use-package claude-code
   :ensure t

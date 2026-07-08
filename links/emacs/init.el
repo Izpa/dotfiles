@@ -32,25 +32,25 @@
        (load-it (lambda (f) (load-file (concat (file-name-as-directory stuff-dir) f)))))
   (mapc load-it (directory-files stuff-dir nil "\\.el$")))
 
+;; Restore a sane GC threshold after startup (early-init.el raised it to
+;; most-positive-fixnum to speed up loading).
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 100 1024 1024)
+                  gc-cons-percentage 0.1)))
+
+;; Local variable values we trust (cider + shadow-cljs nrepl middleware).
+(setq safe-local-variable-values
+      '((eval progn
+              (make-variable-buffer-local
+               'cider-jack-in-nrepl-middlewares)
+              (add-to-list 'cider-jack-in-nrepl-middlewares
+                           "shadow.cljs.devtools.server.nrepl/middleware"))))
+
+;; Keep Custom's writes out of init.el.
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 (provide 'init)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages nil)
- '(safe-local-variable-values
-   '((eval progn
-		   (make-variable-buffer-local
-			'cider-jack-in-nrepl-middlewares)
-		   (add-to-list 'cider-jack-in-nrepl-middlewares
-						"shadow.cljs.devtools.server.nrepl/middleware")))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 ;;; init.el ends here

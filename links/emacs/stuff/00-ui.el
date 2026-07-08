@@ -4,12 +4,8 @@
 ;;; Code:
 
 ;;; Invaluable UI stuff
-(when (and (display-graphic-p) (fboundp 'scroll-bar-mode))
-  (scroll-bar-mode -1))
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'menu-bar-mode)
-  (menu-bar-mode -1))
+;; Toolbar/menubar/scrollbar are suppressed in early-init.el (before the first
+;; frame) to avoid a flash on startup.
 (setq inhibit-startup-screen t)
 (setq scroll-step 1)
 (setq make-backup-files nil)
@@ -19,9 +15,10 @@
 
 ;;; Setup
 
-(use-package all-the-icons
-  :ensure t
-  :if (display-graphic-p))
+;; nerd-icons works in the terminal (needs a Nerd Font in your terminal
+;; emulator), unlike all-the-icons which is GUI-only.
+(use-package nerd-icons
+  :ensure t)
 
 (use-package solarized-theme
   :ensure t
@@ -35,8 +32,7 @@
 (unless (display-graphic-p)
   ;; Reduce font-lock decoration for better performance over slow connections
   (setq font-lock-maximum-decoration 2)
-  ;; Reduce GC pressure
-  (setq gc-cons-threshold (* 50 1024 1024))
+  ;; GC threshold is managed centrally (early-init.el + init.el startup hook)
   ;; Faster cursor blinking
   (setq blink-cursor-interval 0.4)
   ;; Disable expensive UI elements

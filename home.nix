@@ -19,14 +19,23 @@
     go
     (lib.hiPrio gopls)
     gotools
+    golangci-lint
+    delve  # dlv: Go debugger (dape adapter)
     python3
     python3Packages.pip
     python3Packages.python-lsp-server
     python3Packages.black
+    python3Packages.debugpy  # Python debugger (dape adapter)
+    ruff  # fast Python linter/formatter
     clojure
     leiningen
     clojure-lsp
     nodejs_22  # for copilot and other tools
+
+    # Nix / shell tooling (for editing this repo in Emacs)
+    nixd  # Nix LSP
+    nixfmt-rfc-style  # Nix formatter
+    shellcheck
 
     # Build tools
     gcc
@@ -50,8 +59,13 @@
     fd
     tree
     htop
+    btop
     jq
     yq
+    # Modern unix replacements
+    eza  # ls
+    bat  # cat
+    zoxide  # smart cd (also configured via programs.zoxide)
 
     # VCS
     git
@@ -75,10 +89,28 @@
     nix-direnv.enable = true;
   };
 
+  # Smart cd; `z <dir>` jumps by frecency. Adds a `zsh` init hook.
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  # Synced, searchable shell history. Binds Ctrl-r.
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    shellAliases = {
+      ls = "eza --icons --git";
+      ll = "eza -la --icons --git";
+      lt = "eza --tree --level=2 --icons";
+      cat = "bat";
+    };
     initContent = ''
       # Source Nix profile (for non-NixOS systems)
       if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
@@ -131,6 +163,7 @@
   programs.git = {
     enable = true;
     # User config should be set per-machine or via git config
+    delta.enable = true;  # syntax-highlighted diff pager
   };
 
   #---------------------------------------------------------------------------
@@ -138,6 +171,10 @@
   #---------------------------------------------------------------------------
 
   home.file = {
+    ".emacs.d/early-init.el" = {
+      source = ./links/emacs/early-init.el;
+      force = true;
+    };
     ".emacs.d/init.el" = {
       source = ./links/emacs/init.el;
       force = true;
@@ -170,6 +207,7 @@
   };
 
   home.sessionPath = [
+    "$HOME/.rokit/bin"  # Rokit-managed Roblox toolchain (rojo, luau-lsp, ...)
     "$HOME/.nix-profile/bin"
     "$HOME/go/bin"
     "$HOME/.local/bin"

@@ -4,11 +4,12 @@ Portable development environment with Nix, Home Manager, and Flakes.
 
 ## What's included
 
-- **Emacs** with custom configuration
-- **Languages**: Go, Python, Clojure
+- **Emacs** with custom configuration (vertico/consult completion, eglot LSP,
+  tree-sitter, apheleia, gptel + Claude Code)
+- **Languages**: Go, Python, Clojure (+ ruff, golangci-lint, delve, debugpy)
 - **DevOps**: Docker, docker-compose, kind, kubectl, helm
 - **Shell**: Zsh with Oh-My-Zsh, Powerlevel10k, tmux
-- **Tools**: direnv, ripgrep, fzf, mosh, git, Claude Code
+- **Tools**: direnv, ripgrep, fzf, fd, zoxide, atuin, eza, bat, git-delta, mosh, Claude Code
 
 ## Quick start (fresh Ubuntu/Debian)
 
@@ -157,9 +158,10 @@ kill -9 <PID>       # force
 │   └── install.sh     # Main install script (generates flake dynamically)
 └── links/
     ├── emacs/         # Emacs configuration
+    │   ├── early-init.el
     │   ├── init.el
     │   └── stuff/     # Modular emacs configs
-    ├── oh-my-zsh/     # Oh-My-Zsh (submodule)
+    ├── oh-my-zsh/     # Oh-My-Zsh (vendored; powerlevel10k is a submodule)
     └── p10k.zsh       # Powerlevel10k config
 ```
 
