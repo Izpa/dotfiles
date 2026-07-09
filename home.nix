@@ -99,6 +99,9 @@
   programs.atuin = {
     enable = true;
     enableZshIntegration = true;
+    # Without this atuin also grabs the Up arrow, shadowing oh-my-zsh's
+    # up-line-or-beginning-search.
+    flags = [ "--disable-up-arrow" ];
   };
 
   programs.zsh = {
