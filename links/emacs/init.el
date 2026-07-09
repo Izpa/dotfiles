@@ -20,8 +20,33 @@
 (setq warning-suppress-types '((comp)))
 
 ;; Pull package list on first Emacs start
+(defvar my/package-refreshed-p nil
+  "Non-nil once `package-refresh-contents' has run in this session.")
+
+(defun my/package-refresh-once ()
+  "Refresh the archive contents at most once per session."
+  (unless my/package-refreshed-p
+    (setq my/package-refreshed-p t)
+    (package-refresh-contents)))
+
 (unless package-archive-contents
-  (package-refresh-contents))
+  (my/package-refresh-once))
+
+;; MELPA rebuilds its tarballs continuously and drops the old ones, so a cached
+;; archive index eventually points at files that 404.  When that happens every
+;; `:ensure' fails and leaves half-unpacked directories behind.  Refresh the
+;; index and retry once instead.
+(defun my/package-install-retry-after-refresh (orig-fun &rest args)
+  "Call ORIG-FUN with ARGS, retrying once after a fresh archive download."
+  (condition-case err
+      (apply orig-fun args)
+    (error
+     (if my/package-refreshed-p
+         (signal (car err) (cdr err))
+       (my/package-refresh-once)
+       (apply orig-fun args)))))
+
+(advice-add 'package-install :around #'my/package-install-retry-after-refresh)
 
 ;; Install use-package -- convenient wrapper for managing packages
 (unless (package-installed-p 'use-package)
