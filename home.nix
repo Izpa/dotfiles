@@ -196,6 +196,10 @@
       source = ./links/p10k.zsh;
       force = true;
     };
+    ".config/kitty/kitty.conf" = {
+      source = ./links/kitty.conf;
+      force = true;
+    };
   };
 
   #---------------------------------------------------------------------------
