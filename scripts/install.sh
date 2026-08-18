@@ -85,7 +85,10 @@ cd "$DOTFILES_DIR"
 git add -f flake.nix
 [ -f flake.lock ] && git add -f flake.lock
 
-nix run home-manager -- switch --flake ".#$USERNAME"
+# ?submodules=1: flakes exclude git submodules from the source copy by
+# default, which silently drops links/oh-my-zsh/themes/powerlevel10k and
+# leaves omz without its theme on fresh installs.
+nix run home-manager -- switch --flake ".?submodules=1#$USERNAME"
 
 # Remove only the generated flake.nix from the index; keep flake.lock so it can
 # be committed for reproducible pins.
