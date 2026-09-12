@@ -248,6 +248,24 @@
   "j l" '(avy-goto-line :which-key "line"))
 
 (leader-def
+  "T" '(:ignore t :which-key "devtour")
+  "T t" '(devtour :which-key "start / resume")
+  "T h" '(devtour-here :which-key "step at point")
+  "T j" '(devtour-goto :which-key "jump to step")
+  "T i" '(devtour-index :which-key "blocks")
+  "T n" '(devtour-next :which-key "next step")
+  "T p" '(devtour-previous :which-key "prev step")
+  "T b" '(devtour-back :which-key "back")
+  "T s" '(devtour-see-also :which-key "links")
+  "T a" '(devtour-annotate-mode :which-key "toggle eldoc hints")
+  "T %" '(devtour-progress :which-key "how far in")
+  "T R" '(devtour-reset-progress :which-key "reset progress")
+  "T g" '(devtour-reload :which-key "reload after a re-bake")
+  "T l" '(my/devtour-language :which-key "language (en/ru)")
+  "T o" '(my/devtour-org :which-key "org outline")
+  "T w" '(my/devtour-page :which-key "web page"))
+
+(leader-def
   "D" '(:ignore t :which-key "devops")
   "D d" '(docker :which-key "docker")
   "D k" '(kubernetes-overview :which-key "kubernetes"))
